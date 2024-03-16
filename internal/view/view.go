@@ -6,6 +6,8 @@ import (
 	"snake-scape/internal/component"
 	"snake-scape/internal/middleware"
 	"snake-scape/internal/template"
+
+	"github.com/a-h/templ"
 )
 
 func ServeFavicon(w http.ResponseWriter, r *http.Request) {
@@ -22,7 +24,10 @@ func ServeStaticFiles(w http.ResponseWriter, r *http.Request) {
 
 func Home(ctx *middleware.CustomContext, w http.ResponseWriter, r *http.Request) {
 	template.Base(
-		"SnakeScape - Build RuneScape Bots",
-		component.Banner("SnakeScape", "Build RuneScape Bots"),
+		"SnakeScape - Build RuneScape bots with Python",
+		[]templ.Component{
+			component.TextAndTitle("I'm a Component!", "I am included as a content item in the Base Template!"),
+			component.TextAndTitle("I'm another Component!", "I am also included in the Base Template!"),
+		},
 	).Render(ctx, w)
 }

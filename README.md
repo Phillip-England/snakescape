@@ -1,8 +1,8 @@
-# snake_scape
+# SnakeScape
 
 ## Introduction
 
-snake_scape is a website that teaches novice programmers how to build bots for the MMORPG, Runescape. This repo contains all the coding examples used on the site, as well as the code used to serve the site itself. The coding examples are in Python, while the website is written using Go, HTMX, Tailwind, and Templ. I hope you find this information useful on your journey to becoming a better developer.
+SnakeScape is a website that teaches novice programmers how to build bots for the MMORPG, Runescape. This repo contains all the coding examples used on the site, as well as the code used to serve the site itself. The coding examples are in Python, while the website is written using Go, HTMX, Tailwind, and Templ. I hope you find this information useful on your journey to becoming a better developer.
 
 ## Core Technologies
 
