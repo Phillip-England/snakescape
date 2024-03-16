@@ -1,5 +1,8 @@
 package component
 
-templ Hello(name string) {
-    <div>Hello, {name}</div>
+templ Banner(title string, subtext string) {
+    <header>
+        <h1>{title}</h1>
+        <p>{subtext}</p>
+    </header>
 }
