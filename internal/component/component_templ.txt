@@ -6,8 +6,6 @@
 <li>- 
 </li>
 </ul>
-<p class=\"text-sm\">
-</p>
 <a href=\"
 \" class=\"rounded bg-blue-800 px-4 py-1 w-fit text-white text-sm\">
 </a>

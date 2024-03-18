@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"snake-scape/internal/handler"
 	"snake-scape/internal/middleware"
-	"snake-scape/internal/view"
 
 	"github.com/joho/godotenv"
 )
@@ -15,14 +15,15 @@ func main() {
 	_ = godotenv.Load()
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("GET /favicon.ico", view.ServeFavicon)
-	mux.HandleFunc("GET /static/", view.ServeStaticFiles)
+	mux.HandleFunc("GET /favicon.ico", handler.ServeFavicon)
+	mux.HandleFunc("GET /static/", handler.ServeStaticFiles)
+
 	mux.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/" {
 			http.NotFound(w, r)
 			return
 		}
-		middleware.Chain(w, r, view.Home)
+		middleware.Chain(w, r, handler.Home)
 	})
 
 

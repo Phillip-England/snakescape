@@ -2,23 +2,47 @@ package template
 
 import "snake-scape/internal/component"
 
-
-templ Base(name string, content []templ.Component) {
+templ Base(title string) {
     <html>
         <head>
             <meta charset="UTF-8"></meta>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
             <script src="https://unpkg.com/htmx.org@1.9.11"></script>
             <link rel="stylesheet" href="/static/css/output.css"></link>
-            <title>{name}</title>
+            <title>{title}</title>
         </head>
-        <body class='flex justify-center items-center min-h-screen'>
-            <main class='p-6 grid gap-4 w-full max-w-lg m-auto'>
+        <body class='flex flex-col justify-center items-center'>
+            <main class='p-6 grid gap-4 w-full max-w-lg'>
                 @component.Banner()
-                for _, contentItem := range content {
-                    @contentItem
-                }
+                { children... }
             </main>
         </body>
     </html>
+}
+
+templ Home() {
+    @Base("Snakescape - Build RuneScape bots with") {
+        @component.TitleWithChildren("Giving You the Tools") {
+            <p class='text-sm'>This guide will walk you through how to get started building you own bots for RuneScape using python.</p>
+            <p class='text-sm'>All code examples used in this site can be found in <a class='text-blue-800 text-sm' href='{ templ.SafeURL("https://github.com/phillip-england-snakescape") }'>this repository</a> { "for" } public use</p>
+        }
+        @component.TitleWithChildren("OldSchool RuneScape") {
+            <p class='text-sm'>OldSchool RuneScape is a popular MMORPG that has been around since 2013. If you ended up here because you play the game and want to build bots, you can skip to the next section.</p>
+            <p class='text-sm'>If you are here because you want to learn more about GUI automation, you can sign-up for an account <a class='text-blue-800 underline' href='{ templ.SafeURL("https://oldschool.runescape.com/") }'>here</a> and follow along.</p>
+        }
+        @component.TitleWithChildren("Assumptions Made") {
+            <p class='text-sm'>This guide is not an introuduction to programming, and assumes you have a basic understanding of python and programming principles.</p>
+            <p class='text-sm'>However, if you are a novice programmer, this guide will definitely help you to learn more about programming skills, specifically problem solving. A lot of the challenges we face in building bots will have novel solutions, and will expose you to new ways of thinking about general programming problems.</p>
+            <p class='text-sm'>To get the most out of this guide, you will need a solid grasp of the following concepts:</p>
+            <ul class='text-sm grid'>
+                <li>- terminal commands</li>
+                <li>- virtual environments</li>
+                <li>- pip and package management</li>
+                <li>- loops, conditionals, functions, and lists</li>
+            </ul>
+            <p class='text-sm'>If you are new to programming, I would recommend starting with <a class='text-blue-800 underline' href='{ templ.SafeURL("https://www.codecademy.com/learn/learn-python-3") }'>Codecademy's Python 3 course</a>. It will teach you everything you need to get going and follow along with this guide.</p>
+            <p class='text-sm'>Now that we have that out of the way, let's get started!</p>
+            @component.LinkButton("Start Building Bots!", "/getting-started")
+        }
+    }
 }
