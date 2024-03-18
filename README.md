@@ -2,7 +2,7 @@
 
 ## Introduction
 
-SnakeScape is a website that teaches novice programmers how to build bots for the MMORPG, Runescape. This repo contains all the coding examples used on the site, as well as the code used to serve the site itself. The coding examples are in Python, while the website is written using Go, HTMX, Tailwind, and Templ. I hope you find this information useful on your journey to becoming a better developer.
+Snakescape is a website that teaches novice programmers how to build bots for the MMORPG, Runescape. This repo contains all the coding examples used on the site, as well as the code used to serve the site itself. The coding examples are in Python, while the website is written using Go, HTMX, Tailwind, and Templ. I hope you find this information useful on your journey to becoming a better developer.
 
 ## Core Technologies
 
@@ -41,7 +41,7 @@ templ generate --watch
 With the [Tailwind Binary](https://tailwindcss.com/blog/standalone-cli) installed and moved somewhere on your PATH, run the following to generate your CSS output for your tailwind classes (remove --watch to simply build and not hot reload)
 
 ```bash
-tailwindcss -i ./statis/css/input.css -o ./static/css/output.css --watch
+tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch
 ```
 
 ### Serving with Air

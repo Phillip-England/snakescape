@@ -1,14 +1,32 @@
 package component
 
 templ Banner() {
-    <header class='pt-6 px-6 flex flex-col justify-between'>
-        <img src='/static/svg/logo.svg' class='h-24 w-24' />
+    <header class='py-2 px-6 flex flex-col justify-between border-b'>
+        <img src='/static/svg/logo.svg' class='h-20 w-20' />
     </header>
 }
 
-templ TextAndTitle(title string, text string) {
-    <div>
+templ TextAndTitle(title string, addOn... templ.Component) {
+    <div class='flex flex-col gap-4 border rounded p-4'>
         <h1 class='text-lg font-bold'>{title}</h1>
-        <p class='text-sm'>{text}</p>
+        for _, addOnItem := range addOn {
+            @addOnItem
+        }
     </div>
+}
+
+templ UnorderedList(items... string) {
+    <ul class='text-sm grid'>
+        for _, item := range items {
+            <li>- {item}</li>
+        }
+    </ul>
+}
+
+templ Paragraph(text string) {
+    <p class='text-sm'>{text}</p>
+}
+
+templ LinkButton(text string, href templ.SafeURL) {
+    <a href={href} class='rounded bg-blue-800 px-4 py-1 w-fit text-white text-sm'>{text}</a>
 }

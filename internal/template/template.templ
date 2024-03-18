@@ -12,9 +12,9 @@ templ Base(name string, content []templ.Component) {
             <link rel="stylesheet" href="/static/css/output.css"></link>
             <title>{name}</title>
         </head>
-            @component.Banner()
-        <body>
-            <main class='p-6 grid gap-4'>
+        <body class='flex justify-center items-center min-h-screen'>
+            <main class='p-6 grid gap-4 w-full max-w-lg m-auto'>
+                @component.Banner()
                 for _, contentItem := range content {
                     @contentItem
                 }
