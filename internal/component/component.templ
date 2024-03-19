@@ -10,11 +10,11 @@ templ Header() {
     </header>
 }
 
-templ Article(title string, id string) {
-    <article id={id} class='article flex flex-col gap-4'>
+templ Section(title string, id string) {
+    <section id={id} class='section flex flex-col gap-4'>
         <h2 class='text-2xl font-bold'>#{title}</h2>
         { children... }
-    </article>
+    </section>
 }
 
 templ Footer() {
@@ -46,5 +46,33 @@ templ PageNav() {
 }
 
 templ PageNavItem(title string, targetID string) {
-    <li class='pagenav-item hover:text-blue-500 text-xs cursor-pointer' onClick={script.ScrollTo(targetID)} articleref={targetID}>{ title }</li>
+    <li class='pagenav-item hover:text-blue-500 text-xs cursor-pointer' onClick={script.ScrollTo(targetID)} sectionref={targetID}>{ title }</li>
+}
+
+templ PageTurnWrapper() {
+    <ul class='flex flex-row w-full gap-2'>
+        { children... }
+    </ul>
+}
+
+templ PageTurnRight(text string, href string) {
+    <li class='text-xs cursor-pointer border hover:border-black rounded w-1/2'>
+        <a class='p-2 flex flex-col gap-2' href={ templ.SafeURL(href) }>
+            <p class='place-self-end'>Next</p>
+            <h4 class='place-self-end text font-bold'>{text} &gt&gt</h4>
+        </a>
+    </li>
+}
+
+templ PageTurnLeft(text string, href string) {
+    <li class='text-xs cursor-pointer border hover:border-black rounded w-1/2'>
+        <a class='p-2 flex flex-col gap-2' href={ templ.SafeURL(href) }>
+            <p class='place-self-start'>Previous</p>
+            <h4 class='place-self-start text font-bold'>&lt&lt {text}</h4>
+        </a>
+    </li>
+}
+
+templ PageTurnEmpty() {
+    <div class='w-1/2'></div>
 }

@@ -1,8 +1,8 @@
 <header id=\"header\" class=\"py-2 px-6 flex flex-col justify-between border-b w-full\" style=\"grid-area: header;\"><img src=\"/static/svg/logo.svg\" class=\"h-20 w-20\"></header>
-<article id=\"
-\" class=\"article flex flex-col gap-4\"><h2 class=\"text-2xl font-bold\">#
+<section id=\"
+\" class=\"section flex flex-col gap-4\"><h2 class=\"text-2xl font-bold\">#
 </h2>
-</article>
+</section>
 <footer class=\"footer h-16 border-t p-6 text-xs w-full text-center\" style=\"grid-area: footer;\">Copyright © 2024 Phillip England</footer>
 <nav class=\"p-6 border-r flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]\" style=\"grid-area: sitenav;\"><h3 class=\"text-lg font-bold\">Site Navigation</h3><ul class=\"flex flex-col gap-4\">
 </ul></nav>
@@ -11,6 +11,15 @@
 <nav id=\"pagenav\" class=\"p-6 flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]\" style=\"grid-area: pagenav;\"><h3 class=\"text-lg font-bold\">Page Navigation</h3><ul class=\"flex flex-col gap-1\">
 </ul></nav>
 <li class=\"pagenav-item hover:text-blue-500 text-xs cursor-pointer\" onClick=\"
-\" articleref=\"
+\" sectionref=\"
 \">
 </li>
+<ul class=\"flex flex-row w-full gap-2\">
+</ul>
+<li class=\"text-xs cursor-pointer border hover:border-black rounded w-1/2\"><a class=\"p-2 flex flex-col gap-2\" href=\"
+\"><p class=\"place-self-end\">Next</p><h4 class=\"place-self-end text font-bold\">
+ &gt&gt</h4></a></li>
+<li class=\"text-xs cursor-pointer border hover:border-black rounded w-1/2\"><a class=\"p-2 flex flex-col gap-2\" href=\"
+\"><p class=\"place-self-start\">Previous</p><h4 class=\"place-self-start text font-bold\">&lt&lt 
+</h4></a></li>
+<div class=\"w-1/2\"></div>

@@ -19,35 +19,35 @@ func ScrollTo(id string) templ.ComponentScript {
 
 func HighlightPageNavigation() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_HighlightPageNavigation_91e3`,
-		Function: `function __templ_HighlightPageNavigation_91e3(){let main = qs('#main'); // Assuming qs is a shorthand for querySelector
+		Name: `__templ_HighlightPageNavigation_5e8e`,
+		Function: `function __templ_HighlightPageNavigation_5e8e(){let main = qs('#main'); // Assuming qs is a shorthand for querySelector
     let pagenavItems = qsa(".pagenav-item")
-    let articles = qsa('.article')
+    let sections = qsa('.section')
     let debounceTimer;
     main.addEventListener('scroll', function() {
         clearTimeout(debounceTimer)// Clear the previous timeout if the event is fired again within the wait period
         debounceTimer = setTimeout(function() { // set a new timeout
             let scroll = main.scrollTop + qs('#header').offsetHeight + 100;
-            let activeArticle = null;
-            if (scroll < articles[0].offsetTop) {
-                activeArticle = articles[0];
+            let activeSection = null;
+            if (scroll < sections[0].offsetTop) {
+                activeSection = sections[0];
             } else {
-                for (let articlePOS = 0; articlePOS < articles.length; articlePOS++) {
-                    let article = articles[articlePOS];
-                    let articleTop = article.offsetTop;
-                    let articleBottom = articleTop + article.offsetHeight;
-                    if (scroll >= articleTop && scroll <= articleBottom) {
-                        activeArticle = articles[articlePOS];
+                for (let i = 0; i < sections.length; i++) {
+                    let section = sections[i];
+                    let sectionTop = section.offsetTop;
+                    let sectionBottom = sectionTop + section.offsetHeight;
+                    if (scroll >= sectionTop && scroll <= sectionBottom) {
+                        activeSection = sections[i];
                         break;
                     }
                 }
             }
-            if (activeArticle) {
-                let activeArticleID = activeArticle.id;
+            if (activeSection) {
+                let activeSectionID = activeSection.id;
                 for (let i = 0; i < pagenavItems.length; i++) {
                     let pagenavItem = pagenavItems[i];
-                    let articleref = pagenavItem.getAttribute('articleref');
-                    if (articleref === activeArticleID) {
+                    let sectionref = pagenavItem.getAttribute('sectionref');
+                    if (sectionref === activeSectionID) {
                         pagenavItem.classList.add('text-blue-500');
                         pagenavItem.classList.remove('text-black');
                     } else {
@@ -59,7 +59,7 @@ func HighlightPageNavigation() templ.ComponentScript {
         }, 100);
     });
 }`,
-		Call:       templ.SafeScript(`__templ_HighlightPageNavigation_91e3`),
-		CallInline: templ.SafeScriptInline(`__templ_HighlightPageNavigation_91e3`),
+		Call:       templ.SafeScript(`__templ_HighlightPageNavigation_5e8e`),
+		CallInline: templ.SafeScriptInline(`__templ_HighlightPageNavigation_5e8e`),
 	}
 }
