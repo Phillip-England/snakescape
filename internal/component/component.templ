@@ -1,17 +1,17 @@
 package component
 
-script ScrollTo(id string) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-}
+import (
+	"snake-scape/internal/script"
+)
 
 templ Header() {
-    <header class='header py-2 px-6 flex flex-col justify-between border-b w-full' style='grid-area: header;'>
+    <header id='header' class='py-2 px-6 flex flex-col justify-between border-b w-full' style='grid-area: header;'>
         <img src='/static/svg/logo.svg' class='h-20 w-20' />
     </header>
 }
 
-templ TitleWithChildren(title string, id string) {
-    <article id={id} class='flex flex-col gap-4'>
+templ Article(title string, id string) {
+    <article id={id} class='article flex flex-col gap-4'>
         <h2 class='text-2xl font-bold'>#{title}</h2>
         { children... }
     </article>
@@ -22,7 +22,7 @@ templ Footer() {
 }
 
 templ SiteNav() {
-    <nav class='pl-12 p-6 border-r flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]' style='grid-area: sitenav;'>
+    <nav class='p-6 border-r flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]' style='grid-area: sitenav;'>
         <h3 class='text-lg font-bold'>Site Navigation</h3>
         <ul class='flex flex-col gap-4'>
             { children... }
@@ -31,20 +31,20 @@ templ SiteNav() {
 }
 
 templ Main() {
-    <main class='grid p-6 gap-8  overflow-hidden hover:overflow-auto hide-scrollbar' style='grid-area: main;'>
+    <main id='main' class='grid p-6 gap-8  overflow-hidden hover:overflow-auto hide-scrollbar' style='grid-area: main;'>
         { children... }
     </main>
 }
 
 templ PageNav() {
-    <nav class='pl-12 p-6 border-l flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]' style='grid-area: pagenav;'>
+    <nav id='pagenav' class='p-6 flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]' style='grid-area: pagenav;'>
         <h3 class='text-lg font-bold'>Page Navigation</h3>
-        <ul class='flex flex-col gap-2'>
+        <ul class='flex flex-col gap-1'>
             { children... }
         </ul>
     </nav>
 }
 
-templ SideNavItem(title string, targetID string) {
-    <li class='text-blue-500 hover:underline text-xs cursor-pointer' onClick={ ScrollTo(targetID) }>{ title }</li>
+templ PageNavItem(title string, targetID string) {
+    <li class='pagenav-item hover:text-blue-500 text-xs cursor-pointer' onClick={script.ScrollTo(targetID)} articleref={targetID}>{ title }</li>
 }
