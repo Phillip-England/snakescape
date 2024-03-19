@@ -11,19 +11,41 @@ templ Base(title string) {
             <link rel="stylesheet" href="/static/css/output.css"></link>
             <title>{title}</title>
             <style>
-                main {
+                body {
                     grid-template-columns: 1fr 2fr 1fr;
-                    grid-template-areas: 
-                        "sidenav article pagenav"
+                    grid-template-areas:
+                        "header header header"
+                        "sitenav main pagenav"
+                        "footer footer footer";
                     ;
+                }
+                .hide-scrollbar::-webkit-scrollbar {
+                    display: none; /* Chrome, Safari */
+                    }
+
+                    /* Hide scrollbar for IE, Edge, and Firefox */
+                .hide-scrollbar {
+                    -ms-overflow-style: none;  /* IE and Edge */
+                    scrollbar-width: none;  /* Firefox */
+                }
+                .scrollbar::-webkit-scrollbar {
+                    width: 12px; /* Adjust the width of the scrollbar */
+                    }
+
+                .scrollbar::-webkit-scrollbar-track {
+                    background: #f3f4f6; /* Track color */
+                }
+
+                .scrollbar::-webkit-scrollbar-thumb {
+                    background-color: #4b5563; /* Scroll handle color */
+                    border-radius: 20px;
+                    border: 3px solid #f3f4f6; /* Creates padding around the scroll handle */
                 }
             </style>
         </head>
-        <body>
+        <body class='grid w-full gap-8'>
             @component.Header()
-            <main class='grid w-full gap-8'>
-                { children... }
-            </main>
+            { children... }
             @component.Footer()
         </body>
     </html>
@@ -31,20 +53,20 @@ templ Base(title string) {
 
 templ Home() {
     @Base("SnakeScape - Build RuneScape bots with") {
-        @component.SideNav() {
-            
+        @component.SiteNav() {
+            @component.SideNavItem("Giving You the Tools", "1")
         }
-        @component.Artricle() {
+        @component.Main() {
             <h1 class='text-4xl font-bold'>Introuduction</h1>
-            @component.TitleWithChildren("Giving You the Tools") {
+            @component.TitleWithChildren("Giving You the Tools", "1") {
                 <p class='text-sm'>This guide will walk you through how to get started building you own bots for RuneScape using python.</p>
                 <p class='text-sm'>All code examples used in this site can be found in <a class='text-blue-800 text-sm' href='{ templ.SafeURL("https://github.com/phillip-england-snakescape") }'>this repository</a> { "for" } public use</p>
             }
-            @component.TitleWithChildren("Old School RuneScape") {
+            @component.TitleWithChildren("Old School RuneScape", "2") {
                 <p class='text-sm'>Old School RuneScape is a popular MMORPG that has been around since 2013. If you ended up here because you play the game and want to build bots, you can skip to the next section.</p>
                 <p class='text-sm'>If you are here because you want to learn more about GUI automation, you can sign-up for an account <a class='text-blue-800 underline' href='{ templ.SafeURL("https://oldschool.runescape.com/") }'>here</a> and follow along.</p>
             }
-            @component.TitleWithChildren("Assumptions Made") {
+            @component.TitleWithChildren("Assumptions Made", "3") {
                 <p class='text-sm'>This guide is not an introuduction to programming, and assumes you have a basic understanding of python and programming principles.</p>
                 <p class='text-sm'>However, if you are a novice programmer, this guide will definitely help you to learn more about programming skills, specifically problem solving. A lot of the challenges we face in building bots will have novel solutions, and will expose you to new ways of thinking about general programming problems.</p>
                 <p class='text-sm'>To get the most out of this guide, you will need a solid grasp of the following concepts:</p>
@@ -59,11 +81,9 @@ templ Home() {
             }
         }
         @component.PageNav() {
-
+            @component.SideNavItem("Giving You the Tools", "1")
+            @component.SideNavItem("Old School RuneScape", "2")
+            @component.SideNavItem("Assumptions Made", "3")
         }
-
-        // @component.MainContent() {
-
-        // }
     }
 }

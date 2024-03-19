@@ -1,11 +1,15 @@
-<header class=\"header py-2 px-6 flex flex-col justify-between border-b w-full\"><img src=\"/static/svg/logo.svg\" class=\"h-20 w-20\"></header>
-<div class=\"flex flex-col gap-4\"><h2 class=\"text-2xl font-bold\">#
+<header class=\"header py-2 px-6 flex flex-col justify-between border-b w-full\" style=\"grid-area: header;\"><img src=\"/static/svg/logo.svg\" class=\"h-20 w-20\"></header>
+<article id=\"
+\" class=\"flex flex-col gap-4\"><h2 class=\"text-2xl font-bold\">#
 </h2>
-</div>
-<footer class=\"footer h-16 border-t p-6 text-xs w-full text-center\">Copyright © 2024 Phillip England</footer>
-<nav class=\"p-6 h-fit border-r\" style=\"grid-area: sidenav;\"><h3 class=\"text-lg font-bold\">Site Navigation</h3>
-</nav>
-<article class=\"grid p-6 gap-8 mb-16\" style=\"grid-area: article;\">
 </article>
-<nav class=\"p-6 h-fit border-l\" style=\"grid-area: pagenav;\"><h3 class=\"text-lg font-bold\">Page Navigation</h3>
-</nav>
+<footer class=\"footer h-16 border-t p-6 text-xs w-full text-center\" style=\"grid-area: footer;\">Copyright © 2024 Phillip England</footer>
+<nav class=\"pl-12 p-6 border-r flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]\" style=\"grid-area: sitenav;\"><h3 class=\"text-lg font-bold\">Site Navigation</h3><ul class=\"flex flex-col gap-4\">
+</ul></nav>
+<main class=\"grid p-6 gap-8  overflow-hidden hover:overflow-auto hide-scrollbar\" style=\"grid-area: main;\">
+</main>
+<nav class=\"pl-12 p-6 border-l flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]\" style=\"grid-area: pagenav;\"><h3 class=\"text-lg font-bold\">Page Navigation</h3><ul class=\"flex flex-col gap-2\">
+</ul></nav>
+<li class=\"text-blue-500 hover:underline text-xs cursor-pointer\" onClick=\"
+\">
+</li>

@@ -1,43 +1,50 @@
 package component
 
-import (
-
-)
-
+script ScrollTo(id string) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
 
 templ Header() {
-    <header class='header py-2 px-6 flex flex-col justify-between border-b w-full'>
+    <header class='header py-2 px-6 flex flex-col justify-between border-b w-full' style='grid-area: header;'>
         <img src='/static/svg/logo.svg' class='h-20 w-20' />
     </header>
 }
 
-templ TitleWithChildren(title string) {
-    <div class='flex flex-col gap-4'>
+templ TitleWithChildren(title string, id string) {
+    <article id={id} class='flex flex-col gap-4'>
         <h2 class='text-2xl font-bold'>#{title}</h2>
-        { children... }
-    </div>
-}
-
-templ Footer() {
-    <footer class='footer h-16 border-t p-6 text-xs w-full text-center'>Copyright © 2024 Phillip England</footer>
-}
-
-templ SideNav() {
-    <nav class='p-6 h-fit border-r' style='grid-area: sidenav;'>
-        <h3 class='text-lg font-bold'>Site Navigation</h3>
-        { children... }
-    </nav>
-}
-
-templ Artricle() {
-    <article class='grid p-6 gap-8 mb-16' style='grid-area: article;'>
         { children... }
     </article>
 }
 
-templ PageNav() {
-    <nav class='p-6 h-fit border-l' style='grid-area: pagenav;'>
-        <h3 class='text-lg font-bold'>Page Navigation</h3>
-        { children... }
+templ Footer() {
+    <footer class='footer h-16 border-t p-6 text-xs w-full text-center' style='grid-area: footer;'>Copyright © 2024 Phillip England</footer>
+}
+
+templ SiteNav() {
+    <nav class='pl-12 p-6 border-r flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]' style='grid-area: sitenav;'>
+        <h3 class='text-lg font-bold'>Site Navigation</h3>
+        <ul class='flex flex-col gap-4'>
+            { children... }
+        </ul>
     </nav>
+}
+
+templ Main() {
+    <main class='grid p-6 gap-8  overflow-hidden hover:overflow-auto hide-scrollbar' style='grid-area: main;'>
+        { children... }
+    </main>
+}
+
+templ PageNav() {
+    <nav class='pl-12 p-6 border-l flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]' style='grid-area: pagenav;'>
+        <h3 class='text-lg font-bold'>Page Navigation</h3>
+        <ul class='flex flex-col gap-2'>
+            { children... }
+        </ul>
+    </nav>
+}
+
+templ SideNavItem(title string, targetID string) {
+    <li class='text-blue-500 hover:underline text-xs cursor-pointer' onClick={ ScrollTo(targetID) }>{ title }</li>
 }
