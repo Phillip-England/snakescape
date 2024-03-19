@@ -1,26 +1,43 @@
 package component
 
-templ Banner() {
-    <header class='py-2 px-6 flex flex-col justify-between border-b'>
+import (
+
+)
+
+
+templ Header() {
+    <header class='header py-2 px-6 flex flex-col justify-between border-b w-full'>
         <img src='/static/svg/logo.svg' class='h-20 w-20' />
     </header>
 }
 
 templ TitleWithChildren(title string) {
-    <div class='flex flex-col gap-4 border rounded p-4'>
-        <h1 class='text-lg font-bold'>{title}</h1>
+    <div class='flex flex-col gap-4'>
+        <h2 class='text-2xl font-bold'>#{title}</h2>
         { children... }
     </div>
 }
 
-templ UnorderedList(items... string) {
-    <ul class='text-sm grid'>
-        for _, item := range items {
-            <li>- {item}</li>
-        }
-    </ul>
+templ Footer() {
+    <footer class='footer h-16 border-t p-6 text-xs w-full text-center'>Copyright © 2024 Phillip England</footer>
 }
 
-templ LinkButton(text string, href templ.SafeURL) {
-    <a href={href} class='rounded bg-blue-800 px-4 py-1 w-fit text-white text-sm'>{text}</a>
+templ SideNav() {
+    <nav class='p-6 h-fit border-r' style='grid-area: sidenav;'>
+        <h3 class='text-lg font-bold'>Site Navigation</h3>
+        { children... }
+    </nav>
+}
+
+templ Artricle() {
+    <article class='grid p-6 gap-8 mb-16' style='grid-area: article;'>
+        { children... }
+    </article>
+}
+
+templ PageNav() {
+    <nav class='p-6 h-fit border-l' style='grid-area: pagenav;'>
+        <h3 class='text-lg font-bold'>Page Navigation</h3>
+        { children... }
+    </nav>
 }

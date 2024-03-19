@@ -1,11 +1,11 @@
-<header class=\"py-2 px-6 flex flex-col justify-between border-b\"><img src=\"/static/svg/logo.svg\" class=\"h-20 w-20\"></header>
-<div class=\"flex flex-col gap-4 border rounded p-4\"><h1 class=\"text-lg font-bold\">
-</h1>
+<header class=\"header py-2 px-6 flex flex-col justify-between border-b w-full\"><img src=\"/static/svg/logo.svg\" class=\"h-20 w-20\"></header>
+<div class=\"flex flex-col gap-4\"><h2 class=\"text-2xl font-bold\">#
+</h2>
 </div>
-<ul class=\"text-sm grid\">
-<li>- 
-</li>
-</ul>
-<a href=\"
-\" class=\"rounded bg-blue-800 px-4 py-1 w-fit text-white text-sm\">
-</a>
+<footer class=\"footer h-16 border-t p-6 text-xs w-full text-center\">Copyright © 2024 Phillip England</footer>
+<nav class=\"p-6 h-fit border-r\" style=\"grid-area: sidenav;\"><h3 class=\"text-lg font-bold\">Site Navigation</h3>
+</nav>
+<article class=\"grid p-6 gap-8 mb-16\" style=\"grid-area: article;\">
+</article>
+<nav class=\"p-6 h-fit border-l\" style=\"grid-area: pagenav;\"><h3 class=\"text-lg font-bold\">Page Navigation</h3>
+</nav>
