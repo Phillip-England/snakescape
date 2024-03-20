@@ -64,3 +64,35 @@ script HighlightPageNavigation() {
     setInitialActiveNavItem();
 }
 
+script SiteNavDropdownToggle() {
+    let dropdowns = qsa('.sitenav-dropdown')
+}
+
+script ColorSiteNavItemsNoDropdowns() {
+    let baseSiteNavItems = qsa('.sitenav-item-no-dropdown')
+    let currentPath = window.location.pathname;
+    for (let i = 0; i < baseSiteNavItems.length; i++) {
+        let navitem = baseSiteNavItems[i];
+        let activeBackgroundPath =navitem.getAttribute('active-background-path');
+        let activeColorPath = navitem.getAttribute('active-color-path');
+        if (activeBackgroundPath == currentPath) {
+            navitem.classList.add('bg-gray-200');
+        }
+        if (activeColorPath == currentPath) {
+            navitem.classList.remove('text-gray-700');
+            navitem.classList.add('text-blue-500');
+        }
+    }
+}
+
+script ColorSiteNavItemsWithDropdowns() {
+    let dropdowns = qsa('.sitenav-dropdown');
+    let path = window.location.pathname;
+    for (let i = 0; i < dropdowns.length; i++) {
+        let dropdown = dropdowns[i];
+        let title = dropdown.querySelector('.dropdown-title')
+        console.log(dropdown)
+        console.log(title)
+    }
+}
+

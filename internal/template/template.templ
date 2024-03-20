@@ -61,7 +61,7 @@ templ Base(title string) {
                 };
             </script>
         </head>
-        <body class='grid w-full gap-8'>
+        <body class='grid w-full gap-8' hx-boost='true'>
             @component.Header()
             { children... }
             @component.Footer()
@@ -72,11 +72,13 @@ templ Base(title string) {
 templ Home() {
     @Base("SnakeScape - Build RuneScape bots with") {
         @component.SiteNav() {
-            @component.PageNavItem("Giving You the Tools", "1")
+            @component.SiteNavNoDropdown("Introduction", "/", "/")
+            @component.SiteNavDropdown("Getting Started", "/", "/") {
+                <p>testing</p>
+            }
         }
         @component.Main() {
-            @component.Article() {
-                <h1 class='text-4xl font-bold'>Introuduction</h1>
+            @component.Article("Introduction") {
                 @component.Section("Giving You the Tools", "1") {
                     <p class='text-sm'>This guide will walk you through how to get started building you own bots for RuneScape using python.</p>
                     <p class='text-sm'>All code examples used in this site can be found in <a class='text-blue-800 text-sm' href='{ templ.SafeURL("https://github.com/phillip-england-snakescape") }'>this repository</a> { "for" } public use</p>
@@ -111,4 +113,7 @@ templ Home() {
         }
     }
     @script.HighlightPageNavigation()
+    @script.ColorSiteNavItemsNoDropdowns()
+    @script.ColorSiteNavItemsWithDropdowns()
+    @script.SiteNavDropdownToggle()
 }
