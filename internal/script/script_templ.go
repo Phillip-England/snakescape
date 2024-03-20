@@ -19,47 +19,65 @@ func ScrollTo(id string) templ.ComponentScript {
 
 func HighlightPageNavigation() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_HighlightPageNavigation_5e8e`,
-		Function: `function __templ_HighlightPageNavigation_5e8e(){let main = qs('#main'); // Assuming qs is a shorthand for querySelector
-    let pagenavItems = qsa(".pagenav-item")
-    let sections = qsa('.section')
+		Name: `__templ_HighlightPageNavigation_a6e0`,
+		Function: `function __templ_HighlightPageNavigation_a6e0(){let main = qs('#main'); // Assuming qs is a shorthand for querySelector
+    let pagenavItems = qsa(".pagenav-item");
+    let sections = qsa('.section');
     let debounceTimer;
+
+    function updateActiveSection() {
+        // Calculate the center of the main area visible part
+        let mainCenter = main.scrollTop + main.offsetHeight / 2;
+        let closestSection = null;
+        let closestDistance = Infinity;
+
+        for (let i = 0; i < sections.length; i++) {
+            let section = sections[i];
+            // Calculate the middle point of the section
+            let sectionMiddle = section.offsetTop + section.offsetHeight / 2;
+            // Calculate the distance of the section middle to the main center
+            let distance = Math.abs(mainCenter - sectionMiddle);
+
+            // Check if this section is closer to the center of the main area than the previous ones
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestSection = section;
+            }
+        }
+
+        if (closestSection) {
+            let activeSectionID = closestSection.id;
+            pagenavItems.forEach(function(pagenavItem) {
+                let sectionref = pagenavItem.getAttribute('sectionref');
+                if (sectionref === activeSectionID) {
+                    pagenavItem.classList.add('text-blue-500');
+                    pagenavItem.classList.remove('text-black');
+                } else {
+                    pagenavItem.classList.add('text-black');
+                    pagenavItem.classList.remove('text-blue-500');
+                }
+            });
+        }
+    }
+
+    // Attach the scroll event listener
     main.addEventListener('scroll', function() {
-        clearTimeout(debounceTimer)// Clear the previous timeout if the event is fired again within the wait period
-        debounceTimer = setTimeout(function() { // set a new timeout
-            let scroll = main.scrollTop + qs('#header').offsetHeight + 100;
-            let activeSection = null;
-            if (scroll < sections[0].offsetTop) {
-                activeSection = sections[0];
-            } else {
-                for (let i = 0; i < sections.length; i++) {
-                    let section = sections[i];
-                    let sectionTop = section.offsetTop;
-                    let sectionBottom = sectionTop + section.offsetHeight;
-                    if (scroll >= sectionTop && scroll <= sectionBottom) {
-                        activeSection = sections[i];
-                        break;
-                    }
-                }
-            }
-            if (activeSection) {
-                let activeSectionID = activeSection.id;
-                for (let i = 0; i < pagenavItems.length; i++) {
-                    let pagenavItem = pagenavItems[i];
-                    let sectionref = pagenavItem.getAttribute('sectionref');
-                    if (sectionref === activeSectionID) {
-                        pagenavItem.classList.add('text-blue-500');
-                        pagenavItem.classList.remove('text-black');
-                    } else {
-                        pagenavItem.classList.add('text-black');
-                        pagenavItem.classList.remove('text-blue-500');
-                    }
-                }
-            }
-        }, 100);
+        clearTimeout(debounceTimer); // Clear the previous timeout if the event is fired again within the wait period
+        debounceTimer = setTimeout(updateActiveSection, 100); // Set a new timeout
     });
+
+    // Set the first .pagenav-item as active on initial load
+    function setInitialActiveNavItem() {
+        if (pagenavItems.length > 0) {
+            pagenavItems[0].classList.add('text-blue-500');
+        }
+    }
+
+    // Call the function to update active section on initial load, and to set the first navigation item as active
+    updateActiveSection(); // This will handle the logic of setting the closest section as active even on load
+    setInitialActiveNavItem();
 }`,
-		Call:       templ.SafeScript(`__templ_HighlightPageNavigation_5e8e`),
-		CallInline: templ.SafeScriptInline(`__templ_HighlightPageNavigation_5e8e`),
+		Call:       templ.SafeScript(`__templ_HighlightPageNavigation_a6e0`),
+		CallInline: templ.SafeScriptInline(`__templ_HighlightPageNavigation_a6e0`),
 	}
 }

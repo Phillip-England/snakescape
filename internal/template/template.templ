@@ -23,6 +23,12 @@ templ Base(title string) {
                         "footer footer";
                     ;
                 }
+                main {
+                    grid-template-areas:
+                        "article pagenav"
+                    ;
+                    grid-template-columns: 3fr 1fr;
+                }
                 .hide-scrollbar::-webkit-scrollbar {
                     display: none; /* Chrome, Safari */
                 }
@@ -44,12 +50,6 @@ templ Base(title string) {
                     background-color: #4b5563; /* Scroll handle color */
                     border-radius: 20px;
                     border: 3px solid #f3f4f6; /* Creates padding around the scroll handle */
-                }
-                main {
-                    grid-template-areas:
-                        "article pagenav"
-                    ;
-                    grid-template-coloumns: 3fr 1fr;
                 }
             </style>
             <script>
