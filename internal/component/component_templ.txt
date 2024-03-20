@@ -6,9 +6,11 @@
 <footer class=\"footer h-16 border-t p-6 text-xs w-full text-center\" style=\"grid-area: footer;\">Copyright © 2024 Phillip England</footer>
 <nav class=\"p-6 border-r flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]\" style=\"grid-area: sitenav;\"><h3 class=\"text-lg font-bold\">Site Navigation</h3><ul class=\"flex flex-col gap-4\">
 </ul></nav>
-<main id=\"main\" class=\"grid p-6 gap-8  overflow-hidden hover:overflow-auto hide-scrollbar\" style=\"grid-area: main;\">
+<main id=\"main\" class=\"grid gap-16 p-6 overflow-auto scrollbar\" style=\"grid-area: main;\">
 </main>
-<nav id=\"pagenav\" class=\"p-6 flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]\" style=\"grid-area: pagenav;\"><h3 class=\"text-lg font-bold\">Page Navigation</h3><ul class=\"flex flex-col gap-1\">
+<article class=\"grid flex-col gap-8\" style=\"grid-area: article;\">
+</article>
+<nav id=\"pagenav\" class=\"flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 sticky top-0 h-max\" style=\"grid-area: pagenav;\"><h3 class=\"text-lg font-bold\">Page Navigation</h3><ul class=\"flex flex-col gap-1\">
 </ul></nav>
 <li class=\"pagenav-item hover:text-blue-500 text-xs cursor-pointer\" onClick=\"
 \" sectionref=\"
