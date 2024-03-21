@@ -1,9 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    darkMode: 'selector',
     content: [
         "./internal/**/*.{go,js,templ,html}"
     ],
     theme: {
+      colors: {
+        "black": '#111111',
+        "darkgray": '#222222',
+        "faintgray": '#EEEEEE',
+        "white": '#FAFAFA',
+      },
       extend: {
         screens: {
           'sm': '640px', // Phones

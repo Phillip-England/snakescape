@@ -33,14 +33,14 @@ templ Base(title string) {
                     display: none; /* Chrome, Safari */
                 }
 
-                    /* Hide scrollbar for IE, Edge, and Firefox */
+                /* Hide scrollbar for IE, Edge, and Firefox */
                 .hide-scrollbar {
                     -ms-overflow-style: none;  /* IE and Edge */
                     scrollbar-width: none;  /* Firefox */
                 }
                 .scrollbar::-webkit-scrollbar {
                     width: 12px; /* Adjust the width of the scrollbar */
-                    }
+                }
 
                 .scrollbar::-webkit-scrollbar-track {
                     background: #f3f4f6; /* Track color */
@@ -51,8 +51,29 @@ templ Base(title string) {
                     border-radius: 20px;
                     border: 3px solid #f3f4f6; /* Creates padding around the scroll handle */
                 }
+                .scrollbar-dark::-webkit-scrollbar {
+                    width: 12px; /* Adjust the width of the scrollbar */
+                }
+                .scrollbar-dark::-webkit-scrollbar-track {
+                    background: #111111; /* Track color */
+                    border-radius: 20px;
+                    border: 3px solid #111111; /* Creates padding around the scroll handle */
+                }
+
+                .scrollbar-dark::-webkit-scrollbar-thumb {
+                    background-color: #4b5563; /* Scroll handle color */
+                    border-radius: 20px;
+                    border: 3px solid #111111; /* Creates padding around the scroll handle */
+                }
+                
+
             </style>
             <script>
+                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark')
+                } else {
+                    document.documentElement.classList.remove('dark')
+                }
                 function qs(selector, parentSelector) {
                     if (parentSelector) {
                         let parent = document.querySelector(parentSelector)
@@ -79,7 +100,7 @@ templ Base(title string) {
 
             </script>
         </head>
-        <body class='grid w-full gap-8' hx-boost='true'>
+        <body class='grid w-full gap-8 bg-white dark:bg-black text-black dark:text-white' hx-boost='true'>
             @component.Header()
             { children... }
             @component.Footer()
@@ -119,7 +140,7 @@ templ Home() {
                     <p class='text-sm'>Now that we have that out of the way, let's get started!</p>
                 }
                 @component.PageTurnWrapper() {
-                    @component.PageTurnEmpty(),
+                    @component.PageTurnEmpty()
                     @component.PageTurnRight("Getting Started", "/getting-started/overview")
                 }
             }
@@ -130,6 +151,7 @@ templ Home() {
             }
         }
     }
+    @script.ToggleDarkMode()
     @script.HighlightPageNavigation()
     @script.ColorSiteNavItemsNoDropdowns()
     @script.ColorSiteNavItemsWithDropdowns()
