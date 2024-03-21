@@ -6,13 +6,18 @@
 <footer class=\"footer h-16 border-t p-6 text-xs w-full text-center\" style=\"grid-area: footer;\">Copyright © 2024 Phillip England</footer>
 <nav class=\"border-r px-2 flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]\" style=\"grid-area: sitenav;\"><ul class=\"flex flex-col gap-2\">
 </ul></nav>
-<li class=\"cursor-pointer sitenav-item-no-dropdown flex text-gray-700 flex-row justify-between p-2 rounded items-center hover:bg-gray-200\" active-background-path=\"
-\" active-color-path=\"
-\"><summary class=\"text-sm font-bold\">
-</summary></li>
-<li class=\"sitenav-dropdown text cursor-pointer\"><div class=\"flex flex-row justify-between p-2 rounded items-center hover:bg-gray-200\"><summary class=\"dropdown-title text-sm text-gray-700 font-bold\">
-</summary> <svg class=\"right-caret w-4 h-4 text-gray-700\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path fill-rule=\"evenodd\" d=\"M10.271 5.575C8.967 4.501 7 5.43 7 7.12v9.762c0 1.69 1.967 2.618 3.271 1.544l5.927-4.881a2 2 0 0 0 0-3.088l-5.927-4.88Z\" clip-rule=\"evenodd\"></path></svg> <svg class=\"down-caret w-4 h-4 text-gray-700 hidden\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path fill-rule=\"evenodd\" d=\"M18.425 10.271C19.499 8.967 18.57 7 16.88 7H7.12c-1.69 0-2.618 1.967-1.544 3.271l4.881 5.927a2 2 0 0 0 3.088 0l4.88-5.927Z\" clip-rule=\"evenodd\"></path></svg></div><ul class=\"flex flex-col gap-1 hidden\">
+<li class=\"cursor-pointer sitenav-item-no-dropdown select-none flex text-gray-700 flex-row justify-between rounded items-center hover:bg-gray-200\" active-path=\"
+\"><a href=\"
+\" class=\"p-2 text-sm font-bold w-full\">
+</a></li>
+<li class=\"sitenav-dropdown select-none text cursor-pointer rounded flex flex-col gap-2\" active-path=\"
+\"><div class=\"dropdown-toggle flex flex-row justify-between p-2 rounded items-center hover:bg-gray-200\"><summary class=\"dropdown-title text-sm text-gray-700 font-bold\">
+</summary> <svg class=\"caret w-4 h-4 text-gray-700\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path fill-rule=\"evenodd\" d=\"M10.271 5.575C8.967 4.501 7 5.43 7 7.12v9.762c0 1.69 1.967 2.618 3.271 1.544l5.927-4.881a2 2 0 0 0 0-3.088l-5.927-4.88Z\" clip-rule=\"evenodd\"></path></svg></div><ul class=\"hidden-section flex flex-col gap-1 hidden pl-4 text-sm text-gray-700 font-bold\">
 </ul></li>
+<li class=\"sitenav-dropdown-item border rounded hover:bg-gray-200 flex\" active-path=\"
+\"><a class=\"p-2 w-full\" href=\"
+\">
+</a></li>
 <main id=\"main\" class=\"grid gap-16 overflow-auto scrollbar\" style=\"grid-area: main;\">
 </main>
 <article class=\"grid flex-col gap-8 px-12 mb-12\" style=\"grid-area: article;\"><h1 class=\"text-4xl font-bold mb-4\">

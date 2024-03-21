@@ -26,7 +26,7 @@ func main() {
 		middleware.Chain(w, r, handler.Home)
 	})
 
-	mux.HandleFunc("GET /getting-started", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("GET /getting-started/overview", func(w http.ResponseWriter, r *http.Request) {
 		middleware.Chain(w, r, handler.Home)
 	})
 

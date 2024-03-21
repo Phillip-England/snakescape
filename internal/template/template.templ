@@ -53,12 +53,30 @@ templ Base(title string) {
                 }
             </style>
             <script>
-                function qs(selector) {
+                function qs(selector, parentSelector) {
+                    if (parentSelector) {
+                        let parent = document.querySelector(parentSelector)
+                        return parent.querySelector(selector)
+                    }
                     return document.querySelector(selector)
                 };
-                function qsa(selector) {
+                function qsa(selector, parentSelector) {
+                    if (parentSelector) {
+                        let parent = document.querySelector(parentSelector)
+                        return parent.querySelectorAll(selector)
+                    }
                     return document.querySelectorAll(selector)    
                 };
+                function pathParts() {
+                    const pathname = window.location.pathname;
+                    if (pathname === "/") {
+                        return ["/"];
+                    }
+                    const segments = pathname.split('/').filter(segment => segment !== '');
+                    const prefixedSegments = segments.map(segment => `/${segment}`);
+                    return prefixedSegments;
+                }
+
             </script>
         </head>
         <body class='grid w-full gap-8' hx-boost='true'>
@@ -72,9 +90,9 @@ templ Base(title string) {
 templ Home() {
     @Base("SnakeScape - Build RuneScape bots with") {
         @component.SiteNav() {
-            @component.SiteNavNoDropdown("Introduction", "/", "/")
-            @component.SiteNavDropdown("Getting Started", "/", "/") {
-                <p>testing</p>
+            @component.SiteNavNoDropdown("Introduction", "/")
+            @component.SiteNavDropdown("Getting Started", "/getting-started") {
+                @component.SiteNavDropdownItem("Overview", "/getting-started/overview")
             }
         }
         @component.Main() {
@@ -102,7 +120,7 @@ templ Home() {
                 }
                 @component.PageTurnWrapper() {
                     @component.PageTurnLeft("Home", "/"),
-                    @component.PageTurnRight("Getting Started", "/getting-started")
+                    @component.PageTurnRight("Getting Started", "/getting-started/overview")
                 }
             }
             @component.PageNav() {

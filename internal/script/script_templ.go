@@ -94,40 +94,65 @@ func SiteNavDropdownToggle() templ.ComponentScript {
 
 func ColorSiteNavItemsNoDropdowns() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_ColorSiteNavItemsNoDropdowns_e98c`,
-		Function: `function __templ_ColorSiteNavItemsNoDropdowns_e98c(){let baseSiteNavItems = qsa('.sitenav-item-no-dropdown')
+		Name: `__templ_ColorSiteNavItemsNoDropdowns_2aa4`,
+		Function: `function __templ_ColorSiteNavItemsNoDropdowns_2aa4(){let baseSiteNavItems = qsa('.sitenav-item-no-dropdown')
     let currentPath = window.location.pathname;
     for (let i = 0; i < baseSiteNavItems.length; i++) {
         let navitem = baseSiteNavItems[i];
-        let activeBackgroundPath =navitem.getAttribute('active-background-path');
-        let activeColorPath = navitem.getAttribute('active-color-path');
-        if (activeBackgroundPath == currentPath) {
+        let activePath = navitem.getAttribute('active-path');
+        if (activePath == currentPath) {
             navitem.classList.add('bg-gray-200');
-        }
-        if (activeColorPath == currentPath) {
             navitem.classList.remove('text-gray-700');
             navitem.classList.add('text-blue-500');
         }
     }
 }`,
-		Call:       templ.SafeScript(`__templ_ColorSiteNavItemsNoDropdowns_e98c`),
-		CallInline: templ.SafeScriptInline(`__templ_ColorSiteNavItemsNoDropdowns_e98c`),
+		Call:       templ.SafeScript(`__templ_ColorSiteNavItemsNoDropdowns_2aa4`),
+		CallInline: templ.SafeScriptInline(`__templ_ColorSiteNavItemsNoDropdowns_2aa4`),
 	}
 }
 
 func ColorSiteNavItemsWithDropdowns() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_ColorSiteNavItemsWithDropdowns_c84e`,
-		Function: `function __templ_ColorSiteNavItemsWithDropdowns_c84e(){let dropdowns = qsa('.sitenav-dropdown');
+		Name: `__templ_ColorSiteNavItemsWithDropdowns_ae3f`,
+		Function: `function __templ_ColorSiteNavItemsWithDropdowns_ae3f(){let dropdowns = qsa('.sitenav-dropdown');
     let path = window.location.pathname;
+    let parts = pathParts()
     for (let i = 0; i < dropdowns.length; i++) {
         let dropdown = dropdowns[i];
         let title = dropdown.querySelector('.dropdown-title')
-        console.log(dropdown)
-        console.log(title)
+        let caret = dropdown.querySelector('.caret')
+        let activePath = dropdown.getAttribute('active-path');
+        let hiddenSection = dropdown.querySelector('.hidden-section');
+        let dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+        let dropdownItems = hiddenSection.querySelectorAll('.sitenav-dropdown-item');
+        if (activePath == parts[0]) {
+            title.classList.remove('text-gray-700');
+            title.classList.add('text-blue-500');
+            caret.classList.add('rotate-90')
+            hiddenSection.classList.remove('hidden');
+        }
+        dropdownToggle.addEventListener('click', function() {
+            if (hiddenSection.classList.contains('hidden')) {
+                hiddenSection.classList.remove('hidden');
+                caret.classList.add('rotate-90')
+            } else {
+                hiddenSection.classList.add('hidden');
+                caret.classList.remove('rotate-90')
+            }
+        });
+        for (let j = 0; j < dropdownItems.length; j++) {
+            let dropdownItem = dropdownItems[j];
+            let dropdownItemPath = dropdownItem.getAttribute('active-path');
+            if (dropdownItemPath == path) {
+                dropdownItem.classList.add('bg-gray-200');
+                dropdownItem.classList.remove('text-gray-700');
+                dropdownItem.classList.add('text-blue-500');
+            }
+        }
     }
 }`,
-		Call:       templ.SafeScript(`__templ_ColorSiteNavItemsWithDropdowns_c84e`),
-		CallInline: templ.SafeScriptInline(`__templ_ColorSiteNavItemsWithDropdowns_c84e`),
+		Call:       templ.SafeScript(`__templ_ColorSiteNavItemsWithDropdowns_ae3f`),
+		CallInline: templ.SafeScriptInline(`__templ_ColorSiteNavItemsWithDropdowns_ae3f`),
 	}
 }

@@ -73,12 +73,9 @@ script ColorSiteNavItemsNoDropdowns() {
     let currentPath = window.location.pathname;
     for (let i = 0; i < baseSiteNavItems.length; i++) {
         let navitem = baseSiteNavItems[i];
-        let activeBackgroundPath =navitem.getAttribute('active-background-path');
-        let activeColorPath = navitem.getAttribute('active-color-path');
-        if (activeBackgroundPath == currentPath) {
+        let activePath = navitem.getAttribute('active-path');
+        if (activePath == currentPath) {
             navitem.classList.add('bg-gray-200');
-        }
-        if (activeColorPath == currentPath) {
             navitem.classList.remove('text-gray-700');
             navitem.classList.add('text-blue-500');
         }
@@ -88,11 +85,39 @@ script ColorSiteNavItemsNoDropdowns() {
 script ColorSiteNavItemsWithDropdowns() {
     let dropdowns = qsa('.sitenav-dropdown');
     let path = window.location.pathname;
+    let parts = pathParts()
     for (let i = 0; i < dropdowns.length; i++) {
         let dropdown = dropdowns[i];
         let title = dropdown.querySelector('.dropdown-title')
-        console.log(dropdown)
-        console.log(title)
+        let caret = dropdown.querySelector('.caret')
+        let activePath = dropdown.getAttribute('active-path');
+        let hiddenSection = dropdown.querySelector('.hidden-section');
+        let dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+        let dropdownItems = hiddenSection.querySelectorAll('.sitenav-dropdown-item');
+        if (activePath == parts[0]) {
+            title.classList.remove('text-gray-700');
+            title.classList.add('text-blue-500');
+            caret.classList.add('rotate-90')
+            hiddenSection.classList.remove('hidden');
+        }
+        dropdownToggle.addEventListener('click', function() {
+            if (hiddenSection.classList.contains('hidden')) {
+                hiddenSection.classList.remove('hidden');
+                caret.classList.add('rotate-90')
+            } else {
+                hiddenSection.classList.add('hidden');
+                caret.classList.remove('rotate-90')
+            }
+        });
+        for (let j = 0; j < dropdownItems.length; j++) {
+            let dropdownItem = dropdownItems[j];
+            let dropdownItemPath = dropdownItem.getAttribute('active-path');
+            if (dropdownItemPath == path) {
+                dropdownItem.classList.add('bg-gray-200');
+                dropdownItem.classList.remove('text-gray-700');
+                dropdownItem.classList.add('text-blue-500');
+            }
+        }
     }
 }
 
