@@ -92,8 +92,8 @@ func SiteNavDropdownToggle() templ.ComponentScript {
 
 func ColorSiteNavItemsNoDropdowns() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_ColorSiteNavItemsNoDropdowns_bdd5`,
-		Function: `function __templ_ColorSiteNavItemsNoDropdowns_bdd5(){let baseSiteNavItems = qsa('.sitenav-item-no-dropdown')
+		Name: `__templ_ColorSiteNavItemsNoDropdowns_5ac6`,
+		Function: `function __templ_ColorSiteNavItemsNoDropdowns_5ac6(){let baseSiteNavItems = qsa('.sitenav-item-no-dropdown')
     let currentPath = window.location.pathname;
     for (let i = 0; i < baseSiteNavItems.length; i++) {
         let navitem = baseSiteNavItems[i];
@@ -103,13 +103,13 @@ func ColorSiteNavItemsNoDropdowns() templ.ComponentScript {
             navitem.classList.add('dark:bg-darkgray');
             navitem.classList.add('text-blue');
             navitem.classList.add('dark:text-blue');
-            navitem.classList.remove('text-gray');
+            navitem.classList.remove('text-darkgray');
             navitem.classList.remove('dark:text-gray');
         }
     }
 }`,
-		Call:       templ.SafeScript(`__templ_ColorSiteNavItemsNoDropdowns_bdd5`),
-		CallInline: templ.SafeScriptInline(`__templ_ColorSiteNavItemsNoDropdowns_bdd5`),
+		Call:       templ.SafeScript(`__templ_ColorSiteNavItemsNoDropdowns_5ac6`),
+		CallInline: templ.SafeScriptInline(`__templ_ColorSiteNavItemsNoDropdowns_5ac6`),
 	}
 }
 
