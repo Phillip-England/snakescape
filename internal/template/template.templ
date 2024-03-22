@@ -29,6 +29,21 @@ templ Base(title string) {
                     ;
                     grid-template-columns: 3fr 1fr;
                 }
+                @media (max-width: 768px) {
+                    body {
+                        grid-template-columns: 1fr; /* Stack the columns on top of each other */
+                        grid-template-areas:
+                            "header"
+                            "main"
+                            "footer";
+                    }
+
+                    main {
+                        grid-template-columns: 1fr; /* Adjust if needed, but it's likely you'll keep this for smaller screens */
+                        grid-template-areas:
+                            "article"
+                    }
+                }
                 .hide-scrollbar::-webkit-scrollbar {
                     display: none; /* Chrome, Safari */
                 }

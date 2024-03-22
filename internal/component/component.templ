@@ -28,7 +28,7 @@ templ Footer() {
 }
 
 templ SiteNav() {
-    <nav class="border-r border-faintgray dark:border-darkgray px-2 bg-white dark:bg-black flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]" style='grid-area: sitenav;'>
+    <nav class="border-r border-faintgray dark:border-darkgray px-2 bg-white dark:bg-black hidden md:flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]" style='grid-area: sitenav;'>
         <ul class='flex flex-col gap-2'>
             { children... }
         </ul>
@@ -76,7 +76,7 @@ templ Article(articleTitle string) {
 }
 
 templ PageNav() {
-    <nav id='pagenav' class='flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 sticky top-0 h-max' style='grid-area: pagenav;'>
+    <nav id='pagenav' class='hidden md:flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 sticky top-0 h-max' style='grid-area: pagenav;'>
         <ul class='flex flex-col gap-1'>
             { children... }
         </ul>

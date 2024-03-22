@@ -839,6 +839,22 @@ video {
   color: rgb(44 109 222 / var(--tw-text-opacity));
 }
 
+@media (min-width: 640px) {
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:hidden {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:flex {
+    display: flex;
+  }
+}
+
 .dark\:border-darkgray:where(.dark, .dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(34 34 34 / var(--tw-border-opacity));

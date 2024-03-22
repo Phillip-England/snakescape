@@ -4,7 +4,7 @@
 </h2>
 </section>
 <footer class=\"footer h-16 border-t border-faintgray dark:border-darkgray p-6 text-xs w-full text-center\" style=\"grid-area: footer;\">Copyright © 2024 Phillip England</footer>
-<nav class=\"border-r border-faintgray dark:border-darkgray px-2 bg-white dark:bg-black flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]\" style=\"grid-area: sitenav;\"><ul class=\"flex flex-col gap-2\">
+<nav class=\"border-r border-faintgray dark:border-darkgray px-2 bg-white dark:bg-black hidden md:flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]\" style=\"grid-area: sitenav;\"><ul class=\"flex flex-col gap-2\">
 </ul></nav>
 <li class=\"cursor-pointer sitenav-item-no-dropdown select-none flex dark:text-gray text-darkgray flex-row justify-between rounded items-center hover:bg-lightgray dark:hover:bg-darkgray\" active-path=\"
 \"><a href=\"
@@ -23,7 +23,7 @@
 <article class=\"grid flex-col gap-8 px-12 mb-12 bg-white dark:bg-black\" style=\"grid-area: article;\"><h1 class=\"text-4xl font-bold mb-4\">
 </h1>
 </article>
-<nav id=\"pagenav\" class=\"flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 sticky top-0 h-max\" style=\"grid-area: pagenav;\"><ul class=\"flex flex-col gap-1\">
+<nav id=\"pagenav\" class=\"hidden md:flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 sticky top-0 h-max\" style=\"grid-area: pagenav;\"><ul class=\"flex flex-col gap-1\">
 </ul></nav>
 <li class=\"pagenav-item hover:text-blue text-xs cursor-pointer\" onClick=\"
 \" sectionref=\"
