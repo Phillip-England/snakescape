@@ -12,7 +12,7 @@ module.exports = {
         "lightgray": '#DDDDDD',
         "faintgray": '#EEEEEE',
         "white": '#FAFAFA',
-        "blue": '#1F4E79',
+        "blue": '#2c6dde',
         "logoyellow": '#FFC107',
       },
       extend: {

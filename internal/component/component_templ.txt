@@ -6,7 +6,7 @@
 <footer class=\"footer h-16 border-t border-faintgray dark:border-darkgray p-6 text-xs w-full text-center\" style=\"grid-area: footer;\">Copyright © 2024 Phillip England</footer>
 <nav class=\"border-r border-faintgray dark:border-darkgray px-2 bg-white dark:bg-black flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]\" style=\"grid-area: sitenav;\"><ul class=\"flex flex-col gap-2\">
 </ul></nav>
-<li class=\"cursor-pointer sitenav-item-no-dropdown select-none flex dark:text-gray flex-row justify-between rounded items-center hover:bg-lightgray dark:hover:bg-darkgray\" active-path=\"
+<li class=\"cursor-pointer sitenav-item-no-dropdown select-none flex dark:text-gray text-darkgray flex-row justify-between rounded items-center hover:bg-lightgray dark:hover:bg-darkgray\" active-path=\"
 \"><a href=\"
 \" class=\"p-2 text-sm font-bold w-full\">
 </a></li>
@@ -32,9 +32,9 @@
 <ul class=\"flex flex-row w-full gap-2\">
 </ul>
 <li class=\"text-xs cursor-pointer border border-lightgray dark:border-darkgray hover:border-black dark:hover:border-gray rounded w-1/2\"><a class=\"p-2 flex flex-col gap-2\" href=\"
-\"><p class=\"place-self-end\">Next</p><h4 class=\"place-self-end text font-bold\">
+\"><p class=\"place-self-end\">Next</p><h4 class=\"place-self-end text font-bold text-blue\">
  &gt&gt</h4></a></li>
 <li class=\"text-xs cursor-pointer border border-lightgray dark:border-darkgray hover:border-black dark:hover:border-gray rounded w-1/2\"><a class=\"p-2 flex flex-col gap-2\" href=\"
-\"><p class=\"place-self-start\">Previous</p><h4 class=\"place-self-start text font-bold\">&lt&lt 
+\"><p class=\"place-self-start\">Previous</p><h4 class=\"place-self-start text font-bold text-blue\">&lt&lt 
 </h4></a></li>
 <div class=\"w-1/2\"></div>
