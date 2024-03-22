@@ -853,6 +853,10 @@ video {
   .md\:flex {
     display: flex;
   }
+
+  .md\:hidden {
+    display: none;
+  }
 }
 
 .dark\:border-darkgray:where(.dark, .dark *) {

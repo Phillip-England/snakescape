@@ -160,22 +160,20 @@ func ColorSiteNavItemsWithDropdowns() templ.ComponentScript {
 
 func ToggleDarkMode() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_ToggleDarkMode_bcd1`,
-		Function: `function __templ_ToggleDarkMode_bcd1(){let header = qs('#header')
+		Name: `__templ_ToggleDarkMode_f97c`,
+		Function: `function __templ_ToggleDarkMode_f97c(){let header = qs('#header')
     let moon = header.querySelector('.moon-icon')
     let sun = header.querySelector('.sun-icon')
     let logo = header.querySelector('.logo')
     let main = document.getElementById('main')
     if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         logo.src = '/static/svg/logo-dark.svg'
-        moon.classList.remove('hidden')
-        sun.classList.add('hidden')
+        moon.classList.add('md:flex')
         main.classList.add('scrollbar-dark')        
     } else {
         document.documentElement.classList.remove('dark')
         logo.src = '/static/svg/logo.svg'
-        moon.classList.add('hidden')
-        sun.classList.remove('hidden')
+        sun.classList.add('md:flex')
         main.classList.add('scrollbar')        
     }
     sun.addEventListener('click', function() {
@@ -184,8 +182,8 @@ func ToggleDarkMode() templ.ComponentScript {
         logo.src = '/static/svg/logo-dark.svg'
         main.classList.add('scrollbar-dark')
         main.classList.remove('scrollbar')
-        moon.classList.remove('hidden')
-        sun.classList.add('hidden')
+        moon.classList.add('md:flex')
+        sun.classList.remove('md:flex')
     })
     moon.addEventListener('click', function() {
         document.documentElement.classList.remove('dark')
@@ -193,12 +191,12 @@ func ToggleDarkMode() templ.ComponentScript {
         main.classList.remove('scrollbar-dark')
         main.classList.add('scrollbar')
         logo.src = '/static/svg/logo.svg'
-        moon.classList.add('hidden')
-        sun.classList.remove('hidden')
+        moon.classList.remove('md:flex')
+        sun.classList.add('md:flex')
     })
 
 }`,
-		Call:       templ.SafeScript(`__templ_ToggleDarkMode_bcd1`),
-		CallInline: templ.SafeScriptInline(`__templ_ToggleDarkMode_bcd1`),
+		Call:       templ.SafeScript(`__templ_ToggleDarkMode_f97c`),
+		CallInline: templ.SafeScriptInline(`__templ_ToggleDarkMode_f97c`),
 	}
 }
