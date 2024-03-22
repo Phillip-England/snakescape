@@ -19,8 +19,8 @@ func ScrollTo(id string) templ.ComponentScript {
 
 func HighlightPageNavigation() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_HighlightPageNavigation_a6e0`,
-		Function: `function __templ_HighlightPageNavigation_a6e0(){let main = qs('#main'); // Assuming qs is a shorthand for querySelector
+		Name: `__templ_HighlightPageNavigation_de1e`,
+		Function: `function __templ_HighlightPageNavigation_de1e(){let main = qs('#main'); // Assuming qs is a shorthand for querySelector
     let pagenavItems = qsa(".pagenav-item");
     let sections = qsa('.section');
     let debounceTimer;
@@ -50,11 +50,9 @@ func HighlightPageNavigation() templ.ComponentScript {
             pagenavItems.forEach(function(pagenavItem) {
                 let sectionref = pagenavItem.getAttribute('sectionref');
                 if (sectionref === activeSectionID) {
-                    pagenavItem.classList.add('text-blue-500');
-                    pagenavItem.classList.remove('text-black');
+                    pagenavItem.classList.add('text-blue');
                 } else {
-                    pagenavItem.classList.add('text-black');
-                    pagenavItem.classList.remove('text-blue-500');
+                    pagenavItem.classList.remove('text-blue');
                 }
             });
         }
@@ -69,7 +67,7 @@ func HighlightPageNavigation() templ.ComponentScript {
     // Set the first .pagenav-item as active on initial load
     function setInitialActiveNavItem() {
         if (pagenavItems.length > 0) {
-            pagenavItems[0].classList.add('text-blue-500');
+            pagenavItems[0].classList.add('text-blue');
         }
     }
 
@@ -77,8 +75,8 @@ func HighlightPageNavigation() templ.ComponentScript {
     updateActiveSection(); // This will handle the logic of setting the closest section as active even on load
     setInitialActiveNavItem();
 }`,
-		Call:       templ.SafeScript(`__templ_HighlightPageNavigation_a6e0`),
-		CallInline: templ.SafeScriptInline(`__templ_HighlightPageNavigation_a6e0`),
+		Call:       templ.SafeScript(`__templ_HighlightPageNavigation_de1e`),
+		CallInline: templ.SafeScriptInline(`__templ_HighlightPageNavigation_de1e`),
 	}
 }
 
@@ -94,28 +92,30 @@ func SiteNavDropdownToggle() templ.ComponentScript {
 
 func ColorSiteNavItemsNoDropdowns() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_ColorSiteNavItemsNoDropdowns_2aa4`,
-		Function: `function __templ_ColorSiteNavItemsNoDropdowns_2aa4(){let baseSiteNavItems = qsa('.sitenav-item-no-dropdown')
+		Name: `__templ_ColorSiteNavItemsNoDropdowns_26c2`,
+		Function: `function __templ_ColorSiteNavItemsNoDropdowns_26c2(){let baseSiteNavItems = qsa('.sitenav-item-no-dropdown')
     let currentPath = window.location.pathname;
     for (let i = 0; i < baseSiteNavItems.length; i++) {
         let navitem = baseSiteNavItems[i];
         let activePath = navitem.getAttribute('active-path');
         if (activePath == currentPath) {
-            navitem.classList.add('bg-gray-200');
-            navitem.classList.remove('text-gray-700');
-            navitem.classList.add('text-blue-500');
+            navitem.classList.add('bg-lightgray');
+            navitem.classList.add('dark:bg-darkgray');
+            navitem.classList.add('text-blue');
+            navitem.classList.add('dark:text-blue');
+            navitem.classList.remove('text-gray');
         }
     }
 }`,
-		Call:       templ.SafeScript(`__templ_ColorSiteNavItemsNoDropdowns_2aa4`),
-		CallInline: templ.SafeScriptInline(`__templ_ColorSiteNavItemsNoDropdowns_2aa4`),
+		Call:       templ.SafeScript(`__templ_ColorSiteNavItemsNoDropdowns_26c2`),
+		CallInline: templ.SafeScriptInline(`__templ_ColorSiteNavItemsNoDropdowns_26c2`),
 	}
 }
 
 func ColorSiteNavItemsWithDropdowns() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_ColorSiteNavItemsWithDropdowns_ae3f`,
-		Function: `function __templ_ColorSiteNavItemsWithDropdowns_ae3f(){let dropdowns = qsa('.sitenav-dropdown');
+		Name: `__templ_ColorSiteNavItemsWithDropdowns_b7ff`,
+		Function: `function __templ_ColorSiteNavItemsWithDropdowns_b7ff(){let dropdowns = qsa('.sitenav-dropdown');
     let path = window.location.pathname;
     let parts = pathParts()
     for (let i = 0; i < dropdowns.length; i++) {
@@ -127,8 +127,8 @@ func ColorSiteNavItemsWithDropdowns() templ.ComponentScript {
         let dropdownToggle = dropdown.querySelector('.dropdown-toggle');
         let dropdownItems = hiddenSection.querySelectorAll('.sitenav-dropdown-item');
         if (activePath == parts[0]) {
-            title.classList.remove('text-gray-700');
-            title.classList.add('text-blue-500');
+            title.classList.add('text-blue');
+            title.classList.add('dark:text-blue');
             caret.classList.add('rotate-90')
             hiddenSection.classList.remove('hidden');
         }
@@ -145,15 +145,15 @@ func ColorSiteNavItemsWithDropdowns() templ.ComponentScript {
             let dropdownItem = dropdownItems[j];
             let dropdownItemPath = dropdownItem.getAttribute('active-path');
             if (dropdownItemPath == path) {
-                dropdownItem.classList.add('bg-gray-200');
-                dropdownItem.classList.remove('text-gray-700');
-                dropdownItem.classList.add('text-blue-500');
+                dropdownItem.classList.add('bg-lightgray');
+                dropdownItem.classList.add('dark:bg-darkgray');
+                dropdownItem.classList.add('text-blue');
             }
         }
     }
 }`,
-		Call:       templ.SafeScript(`__templ_ColorSiteNavItemsWithDropdowns_ae3f`),
-		CallInline: templ.SafeScriptInline(`__templ_ColorSiteNavItemsWithDropdowns_ae3f`),
+		Call:       templ.SafeScript(`__templ_ColorSiteNavItemsWithDropdowns_b7ff`),
+		CallInline: templ.SafeScriptInline(`__templ_ColorSiteNavItemsWithDropdowns_b7ff`),
 	}
 }
 

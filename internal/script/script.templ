@@ -36,11 +36,9 @@ script HighlightPageNavigation() {
             pagenavItems.forEach(function(pagenavItem) {
                 let sectionref = pagenavItem.getAttribute('sectionref');
                 if (sectionref === activeSectionID) {
-                    pagenavItem.classList.add('text-blue-500');
-                    pagenavItem.classList.remove('text-black');
+                    pagenavItem.classList.add('text-blue');
                 } else {
-                    pagenavItem.classList.add('text-black');
-                    pagenavItem.classList.remove('text-blue-500');
+                    pagenavItem.classList.remove('text-blue');
                 }
             });
         }
@@ -55,7 +53,7 @@ script HighlightPageNavigation() {
     // Set the first .pagenav-item as active on initial load
     function setInitialActiveNavItem() {
         if (pagenavItems.length > 0) {
-            pagenavItems[0].classList.add('text-blue-500');
+            pagenavItems[0].classList.add('text-blue');
         }
     }
 
@@ -75,9 +73,11 @@ script ColorSiteNavItemsNoDropdowns() {
         let navitem = baseSiteNavItems[i];
         let activePath = navitem.getAttribute('active-path');
         if (activePath == currentPath) {
-            navitem.classList.add('bg-gray-200');
-            navitem.classList.remove('text-gray-700');
-            navitem.classList.add('text-blue-500');
+            navitem.classList.add('bg-lightgray');
+            navitem.classList.add('dark:bg-darkgray');
+            navitem.classList.add('text-blue');
+            navitem.classList.add('dark:text-blue');
+            navitem.classList.remove('text-gray');
         }
     }
 }
@@ -95,8 +95,8 @@ script ColorSiteNavItemsWithDropdowns() {
         let dropdownToggle = dropdown.querySelector('.dropdown-toggle');
         let dropdownItems = hiddenSection.querySelectorAll('.sitenav-dropdown-item');
         if (activePath == parts[0]) {
-            title.classList.remove('text-gray-700');
-            title.classList.add('text-blue-500');
+            title.classList.add('text-blue');
+            title.classList.add('dark:text-blue');
             caret.classList.add('rotate-90')
             hiddenSection.classList.remove('hidden');
         }
@@ -113,9 +113,9 @@ script ColorSiteNavItemsWithDropdowns() {
             let dropdownItem = dropdownItems[j];
             let dropdownItemPath = dropdownItem.getAttribute('active-path');
             if (dropdownItemPath == path) {
-                dropdownItem.classList.add('bg-gray-200');
-                dropdownItem.classList.remove('text-gray-700');
-                dropdownItem.classList.add('text-blue-500');
+                dropdownItem.classList.add('bg-lightgray');
+                dropdownItem.classList.add('dark:bg-darkgray');
+                dropdownItem.classList.add('text-blue');
             }
         }
     }

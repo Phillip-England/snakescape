@@ -717,6 +717,16 @@ video {
   border-color: rgb(238 238 238 / var(--tw-border-opacity));
 }
 
+.border-lightgray {
+  --tw-border-opacity: 1;
+  border-color: rgb(221 221 221 / var(--tw-border-opacity));
+}
+
+.bg-lightgray {
+  --tw-bg-opacity: 1;
+  background-color: rgb(221 221 221 / var(--tw-bg-opacity));
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(250 250 250 / var(--tw-bg-opacity));
@@ -787,6 +797,21 @@ video {
   color: rgb(17 17 17 / var(--tw-text-opacity));
 }
 
+.text-darkgray {
+  --tw-text-opacity: 1;
+  color: rgb(34 34 34 / var(--tw-text-opacity));
+}
+
+.text-gray {
+  --tw-text-opacity: 1;
+  color: rgb(153 153 153 / var(--tw-text-opacity));
+}
+
+.text-blue {
+  --tw-text-opacity: 1;
+  color: rgb(31 78 121 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -804,6 +829,16 @@ video {
   border-color: rgb(17 17 17 / var(--tw-border-opacity));
 }
 
+.hover\:bg-lightgray:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(221 221 221 / var(--tw-bg-opacity));
+}
+
+.hover\:text-blue:hover {
+  --tw-text-opacity: 1;
+  color: rgb(31 78 121 / var(--tw-text-opacity));
+}
+
 .dark\:border-darkgray:where(.dark, .dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(34 34 34 / var(--tw-border-opacity));
@@ -819,7 +854,32 @@ video {
   background-color: rgb(34 34 34 / var(--tw-bg-opacity));
 }
 
+.dark\:text-faintgray:where(.dark, .dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(238 238 238 / var(--tw-text-opacity));
+}
+
+.dark\:text-gray:where(.dark, .dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(153 153 153 / var(--tw-text-opacity));
+}
+
 .dark\:text-white:where(.dark, .dark *) {
   --tw-text-opacity: 1;
   color: rgb(250 250 250 / var(--tw-text-opacity));
+}
+
+.dark\:text-blue:where(.dark, .dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(31 78 121 / var(--tw-text-opacity));
+}
+
+.dark\:hover\:border-gray:hover:where(.dark, .dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(153 153 153 / var(--tw-border-opacity));
+}
+
+.dark\:hover\:bg-darkgray:hover:where(.dark, .dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 34 34 / var(--tw-bg-opacity));
 }

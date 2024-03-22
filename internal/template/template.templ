@@ -100,7 +100,7 @@ templ Base(title string) {
 
             </script>
         </head>
-        <body class='grid w-full gap-8 bg-white dark:bg-black text-black dark:text-white' hx-boost='true'>
+        <body class='grid w-full gap-8 bg-white dark:bg-black text-black dark:text-faintgray' hx-boost='true'>
             @component.Header()
             { children... }
             @component.Footer()
@@ -140,7 +140,7 @@ templ Home() {
                     <p class='text-sm'>Now that we have that out of the way, let's get started!</p>
                 }
                 @component.PageTurnWrapper() {
-                    @component.PageTurnEmpty()
+                    @component.PageTurnLeft("Getting Started", "/getting-started/overview")
                     @component.PageTurnRight("Getting Started", "/getting-started/overview")
                 }
             }
