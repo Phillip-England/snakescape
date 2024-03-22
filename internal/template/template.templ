@@ -44,15 +44,6 @@ templ Base(title string) {
                             "article"
                     }
                 }
-                .hide-scrollbar::-webkit-scrollbar {
-                    display: none; /* Chrome, Safari */
-                }
-
-                /* Hide scrollbar for IE, Edge, and Firefox */
-                .hide-scrollbar {
-                    -ms-overflow-style: none;  /* IE and Edge */
-                    scrollbar-width: none;  /* Firefox */
-                }
                 .scrollbar::-webkit-scrollbar {
                     width: 12px; /* Adjust the width of the scrollbar */
                 }
@@ -66,9 +57,11 @@ templ Base(title string) {
                     border-radius: 20px;
                     border: 3px solid #f3f4f6; /* Creates padding around the scroll handle */
                 }
+
                 .scrollbar-dark::-webkit-scrollbar {
                     width: 12px; /* Adjust the width of the scrollbar */
                 }
+
                 .scrollbar-dark::-webkit-scrollbar-track {
                     background: #111111; /* Track color */
                     border-radius: 20px;
@@ -79,6 +72,13 @@ templ Base(title string) {
                     background-color: #4b5563; /* Scroll handle color */
                     border-radius: 20px;
                     border: 3px solid #111111; /* Creates padding around the scroll handle */
+                }
+
+                /* Media Query to hide scrollbar for screens with max-width of 768px */
+                @media (max-width: 768px) {
+                    .scrollbar::-webkit-scrollbar, .scrollbar-dark::-webkit-scrollbar {
+                        width: 0px; /* Hides the scrollbar */
+                    }
                 }
                 
 
