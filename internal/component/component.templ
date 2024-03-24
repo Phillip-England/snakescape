@@ -5,8 +5,9 @@ import (
 
 templ Header() {
     <header id='header' class="py-2 bg-white dark:bg-black select-none px-6 flex flex-row justify-between items-center border-b border-faintgray dark:border-darkgray w-full" style="grid-area: header;">
-        <img src='/static/svg/logo.svg' class="logo h-20 w-20" />
-        <img src='/static/svg/logo-dark.svg' class="logo-dark h-20 w-20" />
+        <div class="logo-placeholder h-20 w-20"></div>
+        <img src="/static/svg/logo.svg" class="logo h-20 w-20 hidden" />
+        <img src="/static/svg/logo-dark.svg" class="logo-dark h-20 w-20 hidden" />
         <svg class="sun-icon w-6 h-6 text-gray-800 hidden cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5V3m0 18v-2M7.05 7.05 5.636 5.636m12.728 12.728L16.95 16.95M5 12H3m18 0h-2M7.05 16.95l-1.414 1.414M18.364 5.636 16.95 7.05M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/>
         </svg>
@@ -47,12 +48,12 @@ templ SiteNavNoDropdown(title string, activePath string) {
 templ SiteNavDropdown(title string, activePath string) {
     <li class="sitenav-dropdown select-none dark:text-gray text-darkgray cursor-pointer rounded flex flex-col gap-2" active-path={activePath}>
         <div class="dropdown-toggle flex flex-row justify-between p-2 rounded items-center hover:bg-lightgray dark:hover:bg-darkgray">
-            <summary class="dropdown-title text-sm text-gray-700 font-bold">{ title }</summary>
-            <svg class="caret w-4 h-4 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <summary class="dropdown-title text-sm font-bold">{ title }</summary>
+            <svg class="caret w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7"/>
             </svg>
         </div>
-        <ul class="hidden-section flex flex-col gap-1 hidden pl-4 text-sm text-gray-700 font-bold">
+        <ul class="hidden-section flex flex-col gap-1 hidden pl-4 text-sm font-bold">
             { children... }
         </ul>
     </li>

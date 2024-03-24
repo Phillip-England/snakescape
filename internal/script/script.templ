@@ -186,6 +186,7 @@ templ ClassHeader() {
                 this.sun = this.header.querySelector('.sun-icon')
                 this.bars = this.header.querySelector('.bars-icon')
                 this.main = document.querySelector('#main')
+                this.logoPlaceholder = this.header.querySelector('.logo-placeholder')
                 this.initHeaderTheme()
                 this.sun.removeEventListener('click', this.eDarkModeEnabled.bind(this))
                 this.sun.addEventListener('click', this.eDarkModeEnabled.bind(this))
@@ -199,12 +200,14 @@ templ ClassHeader() {
                     this.logoDark.classList.remove('hidden')
                     this.moon.classList.add('md:flex')
                     this.sun.classList.remove('md:flex')
+                    this.logoPlaceholder.classList.add('hidden')
                 } else {
                     document.documentElement.classList.remove('dark')
                     this.logo.classList.remove('hidden')
                     this.logoDark.classList.add('hidden')
                     this.moon.classList.remove('md:flex')
                     this.sun.classList.add('md:flex')
+                    this.logoPlaceholder.classList.add('hidden')
                 }
             }
             eDarkModeEnabled() {
