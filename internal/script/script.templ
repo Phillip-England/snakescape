@@ -1,14 +1,8 @@
 package script
 
-script ScrollTo(id string) {
-    document.getElementById(id).scrollIntoView({ behavior: 'auto' });
-}
-
-
 // using htmx along with hx-boost, the javascript found here will run once, and be available in all other page loads
 templ HeadJavascript() {
     @InitalizeColorTheme()
-    @QuickSelectors()
     @PathParts()
     @ClassHeader()
     @ClassSiteNav()
@@ -31,9 +25,9 @@ templ ApplyThemeToScrollbar() {
     <script>
         function applyThemeToScrollbar() {
             if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                qs('#main').classList.add('scrollbar-dark')
+                document.querySelector('#main').classList.add('scrollbar-dark')
             } else {
-                qs('#main').classList.add('scrollbar')
+                document.querySelector('#main').classList.add('scrollbar')
             }
         }
     </script>
@@ -45,7 +39,7 @@ templ RunOnLoad() {
         document.getElementsByTagName('body')[0].addEventListener('htmx:afterOnLoad', onloadEvent)
         document.removeEventListener('DOMContentLoaded', onloadEvent)
         document.addEventListener('DOMContentLoaded', onloadEvent)
-        applyThemeToScrollbar()
+        applyThemeToScrollbar() // without this, after page navigation, the scollbar will lose its theme
     </script>
 }
 
@@ -63,24 +57,6 @@ templ PathParts() {
     </script>
 }
 
-templ QuickSelectors() {
-    <script>
-        function qs(selector, parentSelector) {
-            if (parentSelector) {
-                let parent = document.querySelector(parentSelector)
-                return parent.querySelector(selector)
-            }
-            return document.querySelector(selector)
-        };
-        function qsa(selector, parentSelector) {
-            if (parentSelector) {
-                let parent = document.querySelector(parentSelector)
-                return parent.querySelectorAll(selector)
-            }
-            return document.querySelectorAll(selector)    
-        };
-    </script>
-}
 
 templ InitalizeColorTheme() {
     <script>
@@ -98,15 +74,16 @@ templ ClassSiteNav() {
             constructor() {}
             hook() {
                 this.sitenav = document.getElementById('sitenav')
-                this.itemsWithoutDropdowns = this.sitenav.querySelectorAll('.sitenav-item-no-dropdown')
-                this.dropdowns = this.sitenav.querySelectorAll('.sitenav-dropdown')
-                this.dropdownItems = this.sitenav.querySelectorAll('.sitenav-dropdown-item')
+                this.mobilenav = document.getElementById('mobilenav')
+                this.itemsWithoutDropdowns = [...this.sitenav.querySelectorAll('.sitenav-item-no-dropdown'), ...this.mobilenav.querySelectorAll('.sitenav-item-no-dropdown')];
+                this.dropdowns = [...this.sitenav.querySelectorAll('.sitenav-dropdown'), ...this.mobilenav.querySelectorAll('.sitenav-dropdown')];
+                this.dropdownItems = [...this.sitenav.querySelectorAll('.sitenav-dropdown-item'), ...this.mobilenav.querySelectorAll('.sitenav-dropdown-item')];
                 this.colorItemsWithoutDropdowns()
                 this.colorDropdowns()
                 this.hookToggleOnDropdowns()
             }
             colorItemsWithoutDropdowns() {
-                let baseSiteNavItems = qsa('.sitenav-item-no-dropdown')
+                let baseSiteNavItems = document.querySelectorAll('.sitenav-item-no-dropdown')
                 let currentPath = window.location.pathname;
                 for (let i = 0; i < this.itemsWithoutDropdowns.length; i++) {
                     let item = this.itemsWithoutDropdowns[i];
@@ -185,13 +162,27 @@ templ ClassHeader() {
                 this.moon = this.header.querySelector('.moon-icon')
                 this.sun = this.header.querySelector('.sun-icon')
                 this.bars = this.header.querySelector('.bars-icon')
+                this.x = this.header.querySelector('.x-icon')
                 this.main = document.querySelector('#main')
                 this.logoPlaceholder = this.header.querySelector('.logo-placeholder')
+                this.overlay = document.querySelector('#overlay')
                 this.initHeaderTheme()
                 this.sun.removeEventListener('click', this.eDarkModeEnabled.bind(this))
                 this.sun.addEventListener('click', this.eDarkModeEnabled.bind(this))
                 this.moon.removeEventListener('click', this.eLightModeEnabled.bind(this))
                 this.moon.addEventListener('click', this.eLightModeEnabled.bind(this))
+                this.bars.removeEventListener('click', this.eToggleMobileNav.bind(this))
+                this.bars.addEventListener('click', this.eToggleMobileNav.bind(this))
+                this.x.removeEventListener('click', this.eToggleMobileNav.bind(this))
+                this.x.addEventListener('click', this.eToggleMobileNav.bind(this))
+                this.overlay.removeEventListener('click', this.eToggleMobileNav.bind(this))
+                this.overlay.addEventListener('click', this.eToggleMobileNav.bind(this))
+                this.mobilenavitems = document.querySelectorAll('.mobilenav-item')
+                for (let i = 0; i < this.mobilenavitems.length; i++) {
+                    let mobilenavitem = this.mobilenavitems[i]
+                    mobilenavitem.removeEventListener('click', this.eToggleMobileNav.bind(this))
+                    mobilenavitem.addEventListener('click', this.eToggleMobileNav.bind(this))
+                }
             }
             initHeaderTheme() {
                 if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -229,6 +220,20 @@ templ ClassHeader() {
                 this.sun.classList.add('md:flex')
                 this.main.classList.remove('scrollbar-dark')
                 this.main.classList.add('scrollbar')
+            }
+            eToggleMobileNav() {
+                let mobilenav = document.getElementById('mobilenav')
+                if (mobilenav.classList.contains('hidden')) {
+                    mobilenav.classList.remove('hidden')
+                    this.bars.classList.add('hidden')
+                    this.x.classList.remove('hidden')
+                    this.overlay.classList.remove('hidden')
+                } else {
+                    mobilenav.classList.add('hidden')
+                    this.bars.classList.remove('hidden')
+                    this.x.classList.add('hidden')
+                    this.overlay.classList.add('hidden')
+                }
             }
         }
         const header = new Header()

@@ -4,7 +4,7 @@ import (
 )
 
 templ Header() {
-    <header id='header' class="py-2 bg-white dark:bg-black select-none px-6 flex flex-row justify-between items-center border-b border-faintgray dark:border-darkgray w-full" style="grid-area: header;">
+    <header id='header' class="py-2 z-50 bg-white dark:bg-black select-none px-6 flex flex-row justify-between items-center border-b border-faintgray dark:border-darkgray w-full" style="grid-area: header;">
         <div class="logo-placeholder h-20 w-20"></div>
         <img src="/static/svg/logo.svg" class="logo h-20 w-20 hidden" />
         <img src="/static/svg/logo-dark.svg" class="logo-dark h-20 w-20 hidden" />
@@ -14,9 +14,13 @@ templ Header() {
         <svg class="moon-icon w-6 h-6 dark:text-white hidden cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 0 1-.5-17.986V3c-.354.966-.5 1.911-.5 3a9 9 0 0 0 9 9c.239 0 .254.018.488 0A9.004 9.004 0 0 1 12 21Z"/>
         </svg>
-        <svg class="bars-icon w-6 h-6 md:hidden text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <svg class="bars-icon w-8 h-8 md:hidden dark:text-white cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
         </svg>
+        <svg class="x-icon w-8 h-8 dark:text-white cursor-pointer hidden md:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
+        </svg>
+
     </header>
 }
 
@@ -31,6 +35,20 @@ templ Footer() {
     <footer class="footer h-16 border-t border-faintgray dark:border-darkgray p-6 text-xs w-full text-center" style="grid-area: footer;">Copyright © 2024 Phillip England</footer>
 }
 
+templ MobileNav() {
+    <nav id="mobilenav" class="md:hidden hidden fixed left-0 top-0 sm:w-2/5 w-3/5 bg-black z-40 border-r dark:border-darkgray h-screen p-2">
+        <div class="mobile-nav-spacer h-[100px]"></div>
+        <ul class="flex flex-col gap-2">
+            { children... }
+        </ul>
+    </nav>
+}
+
+templ Overlay() {
+    <div id="overlay" class="overlay hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-30"></div>
+}
+
+
 templ SiteNav() {
     <nav id='sitenav' class="border-r border-faintgray dark:border-darkgray px-2 bg-white dark:bg-black hidden md:flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]" style="grid-area: sitenav;">
         <ul class="flex flex-col gap-2">
@@ -40,7 +58,7 @@ templ SiteNav() {
 }
 
 templ SiteNavNoDropdown(title string, activePath string) {
-    <li class="cursor-pointer sitenav-item-no-dropdown select-none flex dark:text-gray text-darkgray flex-row justify-between rounded items-center hover:bg-lightgray dark:hover:bg-darkgray" active-path={activePath}>
+    <li class="mobilenav-item cursor-pointer sitenav-item-no-dropdown select-none flex dark:text-gray text-darkgray flex-row justify-between rounded items-center hover:bg-lightgray dark:hover:bg-darkgray" active-path={activePath}>
         <a href={templ.URL(activePath)} class="p-2 text-sm font-bold w-full">{ title }</a>
     </li>
 }
@@ -60,7 +78,7 @@ templ SiteNavDropdown(title string, activePath string) {
 }
 
 templ SiteNavDropdownItem(title string, href string) {
-    <li class="sitenav-dropdown-item rounded hover:bg-lightgray dark:hover:bg-darkgray flex" active-path={href}>
+    <li class="sitenav-dropdown-item mobilenav-item rounded hover:bg-lightgray dark:hover:bg-darkgray flex" active-path={href}>
         <a class="p-2 w-full" href={templ.URL(href)}>{title}</a>
     </li>
 }

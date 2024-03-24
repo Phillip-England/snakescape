@@ -4,6 +4,8 @@
 </body></html>
  
  
+ 
+ 
 <p class=\"text-sm\">This guide will walk you through how to get started building you own bots for RuneScape using python.</p><p class=\"text-sm\">All code examples used in this site can be found in <a class=\"text-blue-800 text-sm\" href=\"{ templ.SafeURL(&#34;https://github.com/phillip-england-snakescape&#34;) }\">this repository</a> 
  public use</p>
  
