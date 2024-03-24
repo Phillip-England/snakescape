@@ -83,42 +83,13 @@ templ Base(title string) {
                 
 
             </style>
-            <script>
-                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    document.documentElement.classList.add('dark')
-                } else {
-                    document.documentElement.classList.remove('dark')
-                }
-                function qs(selector, parentSelector) {
-                    if (parentSelector) {
-                        let parent = document.querySelector(parentSelector)
-                        return parent.querySelector(selector)
-                    }
-                    return document.querySelector(selector)
-                };
-                function qsa(selector, parentSelector) {
-                    if (parentSelector) {
-                        let parent = document.querySelector(parentSelector)
-                        return parent.querySelectorAll(selector)
-                    }
-                    return document.querySelectorAll(selector)    
-                };
-                function pathParts() {
-                    const pathname = window.location.pathname;
-                    if (pathname === "/") {
-                        return ["/"];
-                    }
-                    const segments = pathname.split('/').filter(segment => segment !== '');
-                    const prefixedSegments = segments.map(segment => `/${segment}`);
-                    return prefixedSegments;
-                }
-
-            </script>
+            @script.HeadJavascript()
         </head>
         <body class='grid w-full gap-8 bg-white dark:bg-black text-black dark:text-faintgray' hx-boost='true'>
             @component.Header()
             { children... }
             @component.Footer()
+            @script.RunOnLoad()
         </body>
     </html>
 }
@@ -155,7 +126,7 @@ templ Home() {
                     <p class='text-sm'>Now that we have that out of the way, let's get started!</p>
                 }
                 @component.PageTurnWrapper() {
-                    @component.PageTurnLeft("Getting Started", "/getting-started/overview")
+                    @component.PageTurnLeft("Introduction", "/")
                     @component.PageTurnRight("Getting Started", "/getting-started/overview")
                 }
             }
@@ -166,9 +137,4 @@ templ Home() {
             }
         }
     }
-    @script.ToggleDarkMode()
-    @script.HighlightPageNavigation()
-    @script.ColorSiteNavItemsNoDropdowns()
-    @script.ColorSiteNavItemsWithDropdowns()
-    @script.SiteNavDropdownToggle()
 }

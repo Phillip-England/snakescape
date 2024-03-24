@@ -5,157 +5,293 @@ script ScrollTo(id string) {
 }
 
 
-script HighlightPageNavigation() {
-    let main = qs('#main'); // Assuming qs is a shorthand for querySelector
-    let pagenavItems = qsa(".pagenav-item");
-    let sections = qsa('.section');
-    let debounceTimer;
-
-    function updateActiveSection() {
-        // Calculate the center of the main area visible part
-        let mainCenter = main.scrollTop + main.offsetHeight / 2;
-        let closestSection = null;
-        let closestDistance = Infinity;
-
-        for (let i = 0; i < sections.length; i++) {
-            let section = sections[i];
-            // Calculate the middle point of the section
-            let sectionMiddle = section.offsetTop + section.offsetHeight / 2;
-            // Calculate the distance of the section middle to the main center
-            let distance = Math.abs(mainCenter - sectionMiddle);
-
-            // Check if this section is closer to the center of the main area than the previous ones
-            if (distance < closestDistance) {
-                closestDistance = distance;
-                closestSection = section;
-            }
-        }
-
-        if (closestSection) {
-            let activeSectionID = closestSection.id;
-            pagenavItems.forEach(function(pagenavItem) {
-                let sectionref = pagenavItem.getAttribute('sectionref');
-                if (sectionref === activeSectionID) {
-                    pagenavItem.classList.add('text-blue');
-                } else {
-                    pagenavItem.classList.remove('text-blue');
-                }
-            });
-        }
-    }
-
-    // Attach the scroll event listener
-    main.addEventListener('scroll', function() {
-        clearTimeout(debounceTimer); // Clear the previous timeout if the event is fired again within the wait period
-        debounceTimer = setTimeout(updateActiveSection, 100); // Set a new timeout
-    });
-
-    // Set the first .pagenav-item as active on initial load
-    function setInitialActiveNavItem() {
-        if (pagenavItems.length > 0) {
-            pagenavItems[0].classList.add('text-blue');
-        }
-    }
-
-    // Call the function to update active section on initial load, and to set the first navigation item as active
-    updateActiveSection(); // This will handle the logic of setting the closest section as active even on load
-    setInitialActiveNavItem();
+// using htmx along with hx-boost, the javascript found here will run once, and be available in all other page loads
+templ HeadJavascript() {
+    @InitalizeColorTheme()
+    @QuickSelectors()
+    @PathParts()
+    @ClassHeader()
+    @ClassSiteNav()
+    @OnLoadEvent()
+    @ApplyThemeToScrollbar()
+    @ClassPageNav()
 }
 
-script SiteNavDropdownToggle() {
-    let dropdowns = qsa('.sitenav-dropdown')
+templ OnLoadEvent() {
+    <script>
+        function onloadEvent() {
+            header.hook()
+            sitenav.hook()
+            pagenav.hook()
+        }
+    </script>
 }
 
-script ColorSiteNavItemsNoDropdowns() {
-    let baseSiteNavItems = qsa('.sitenav-item-no-dropdown')
-    let currentPath = window.location.pathname;
-    for (let i = 0; i < baseSiteNavItems.length; i++) {
-        let navitem = baseSiteNavItems[i];
-        let activePath = navitem.getAttribute('active-path');
-        if (activePath == currentPath) {
-            navitem.classList.add('bg-lightgray');
-            navitem.classList.add('dark:bg-darkgray');
-            navitem.classList.add('text-blue');
-            navitem.classList.add('dark:text-blue');
-            navitem.classList.remove('text-darkgray');
-            navitem.classList.remove('dark:text-gray');
-        }
-    }
-}
-
-script ColorSiteNavItemsWithDropdowns() {
-    let dropdowns = qsa('.sitenav-dropdown');
-    let path = window.location.pathname;
-    let parts = pathParts()
-    for (let i = 0; i < dropdowns.length; i++) {
-        let dropdown = dropdowns[i];
-        let title = dropdown.querySelector('.dropdown-title')
-        let caret = dropdown.querySelector('.caret')
-        let activePath = dropdown.getAttribute('active-path');
-        let hiddenSection = dropdown.querySelector('.hidden-section');
-        let dropdownToggle = dropdown.querySelector('.dropdown-toggle');
-        let dropdownItems = hiddenSection.querySelectorAll('.sitenav-dropdown-item');
-        if (activePath == parts[0]) {
-            title.classList.add('text-blue');
-            title.classList.add('dark:text-blue');
-            caret.classList.add('rotate-90')
-            hiddenSection.classList.remove('hidden');
-        }
-        dropdownToggle.addEventListener('click', function() {
-            if (hiddenSection.classList.contains('hidden')) {
-                hiddenSection.classList.remove('hidden');
-                caret.classList.add('rotate-90')
+templ ApplyThemeToScrollbar() {
+    <script>
+        function applyThemeToScrollbar() {
+            console.log('hit')
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                qs('#main').classList.add('scrollbar-dark')
             } else {
-                hiddenSection.classList.add('hidden');
-                caret.classList.remove('rotate-90')
-            }
-        });
-        for (let j = 0; j < dropdownItems.length; j++) {
-            let dropdownItem = dropdownItems[j];
-            let dropdownItemPath = dropdownItem.getAttribute('active-path');
-            if (dropdownItemPath == path) {
-                dropdownItem.classList.add('bg-lightgray');
-                dropdownItem.classList.add('dark:bg-darkgray');
-                dropdownItem.classList.add('text-blue');
+                qs('#main').classList.add('scrollbar')
             }
         }
-    }
+    </script>
 }
 
-script ToggleDarkMode() {
-    let header = qs('#header')
-    let moon = header.querySelector('.moon-icon')
-    let sun = header.querySelector('.sun-icon')
-    let logo = header.querySelector('.logo')
-    let main = document.getElementById('main')
-    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        logo.src = '/static/svg/logo-dark.svg'
-        moon.classList.add('md:flex')
-        main.classList.add('scrollbar-dark')        
-    } else {
-        document.documentElement.classList.remove('dark')
-        logo.src = '/static/svg/logo.svg'
-        sun.classList.add('md:flex')
-        main.classList.add('scrollbar')        
-    }
-    sun.addEventListener('click', function() {
-        document.documentElement.classList.add('dark')
-        localStorage.setItem('theme', 'dark')
-        logo.src = '/static/svg/logo-dark.svg'
-        main.classList.add('scrollbar-dark')
-        main.classList.remove('scrollbar')
-        moon.classList.add('md:flex')
-        sun.classList.remove('md:flex')
-    })
-    moon.addEventListener('click', function() {
-        document.documentElement.classList.remove('dark')
-        localStorage.setItem('theme', 'light')
-        main.classList.remove('scrollbar-dark')
-        main.classList.add('scrollbar')
-        logo.src = '/static/svg/logo.svg'
-        moon.classList.remove('md:flex')
-        sun.classList.add('md:flex')
-    })
-
+templ RunOnLoad() {
+    <script>
+        document.getElementsByTagName('body')[0].removeEventListener('htmx:afterOnLoad', onloadEvent)
+        document.getElementsByTagName('body')[0].addEventListener('htmx:afterOnLoad', onloadEvent)
+        document.removeEventListener('DOMContentLoaded', onloadEvent)
+        document.addEventListener('DOMContentLoaded', onloadEvent)
+        applyThemeToScrollbar()
+    </script>
 }
+
+templ PathParts() {
+    <script>
+        function pathParts() {
+            const pathname = window.location.pathname;
+            if (pathname === "/") {
+                return ["/"];
+            }
+            const segments = pathname.split('/').filter(segment => segment !== '');
+            const prefixedSegments = segments.map(segment => `/${segment}`);
+            return prefixedSegments;
+        }
+    </script>
+}
+
+templ QuickSelectors() {
+    <script>
+        function qs(selector, parentSelector) {
+            if (parentSelector) {
+                let parent = document.querySelector(parentSelector)
+                return parent.querySelector(selector)
+            }
+            return document.querySelector(selector)
+        };
+        function qsa(selector, parentSelector) {
+            if (parentSelector) {
+                let parent = document.querySelector(parentSelector)
+                return parent.querySelectorAll(selector)
+            }
+            return document.querySelectorAll(selector)    
+        };
+    </script>
+}
+
+templ InitalizeColorTheme() {
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+}
+
+templ ClassSiteNav() {
+    <script>
+        class SiteNav {
+            constructor() {}
+            hook() {
+                this.sitenav = document.getElementById('sitenav')
+                this.itemsWithoutDropdowns = this.sitenav.querySelectorAll('.sitenav-item-no-dropdown')
+                this.dropdowns = this.sitenav.querySelectorAll('.sitenav-dropdown')
+                this.dropdownItems = this.sitenav.querySelectorAll('.sitenav-dropdown-item')
+                this.colorItemsWithoutDropdowns()
+                this.colorDropdowns()
+                this.hookToggleOnDropdowns()
+            }
+            colorItemsWithoutDropdowns() {
+                let baseSiteNavItems = qsa('.sitenav-item-no-dropdown')
+                let currentPath = window.location.pathname;
+                for (let i = 0; i < this.itemsWithoutDropdowns.length; i++) {
+                    let item = this.itemsWithoutDropdowns[i];
+                    let activePath = item.getAttribute('active-path');
+                    if (activePath == currentPath) {
+                        item.classList.add('bg-lightgray');
+                        item.classList.add('dark:bg-darkgray');
+                        item.classList.add('text-blue');
+                        item.classList.add('dark:text-blue');
+                        item.classList.remove('text-darkgray');
+                        item.classList.remove('dark:text-gray');
+                    }
+                }
+            }
+            eToggleDropdown(e) {
+                if (e.target.closest('.hidden-section')) {
+                    return
+                }
+                let hiddenSection = e.currentTarget.querySelector('.hidden-section')
+                let caret = e.currentTarget.querySelector('.caret')
+                if (hiddenSection.classList.contains('hidden')) {
+                    hiddenSection.classList.remove('hidden');
+                    caret.classList.add('rotate-90')
+                } else {
+                    hiddenSection.classList.add('hidden');
+                    caret.classList.remove('rotate-90')
+                }
+            }
+            hookToggleOnDropdowns() {
+                for (let i = 0; i < this.dropdowns.length; i++) {
+                    let dropdown = this.dropdowns[i]
+                    dropdown.removeEventListener('click', this.eToggleDropdown)
+                    dropdown.addEventListener('click', this.eToggleDropdown)
+                }
+            }
+            colorDropdowns() {
+                let dropdowns = this.dropdowns
+                let path = window.location.pathname;
+                let parts = pathParts()
+                for (let i = 0; i < dropdowns.length; i++) {
+                    let dropdown = dropdowns[i]
+                    let title = dropdown.querySelector('.dropdown-title')
+                    let caret = dropdown.querySelector('.caret')
+                    let activePath = dropdown.getAttribute('active-path')
+                    let hiddenSection = dropdown.querySelector('.hidden-section')
+                    if (activePath == parts[0]) {
+                        title.classList.add('text-blue');
+                        title.classList.add('dark:text-blue');
+                        caret.classList.add('rotate-90')
+                        hiddenSection.classList.remove('hidden');
+                    }
+                }
+                for (let i = 0; i < this.dropdownItems.length; i++) {
+                    let dropdownItem = this.dropdownItems[i];
+                    let dropdownItemPath = dropdownItem.getAttribute('active-path');
+                    if (dropdownItemPath == path) {
+                        dropdownItem.classList.add('bg-lightgray');
+                        dropdownItem.classList.add('dark:bg-darkgray');
+                        dropdownItem.classList.add('text-blue');
+                    }
+                }
+            }
+        }
+        const sitenav = new SiteNav()
+    </script>
+}
+
+templ ClassHeader() {
+    <script>
+        class Header {
+            constructor() {}
+            hook() {
+                this.header = document.querySelector('#header')
+                this.logo = this.header.querySelector('.logo')
+                this.logoDark = this.header.querySelector('.logo-dark')
+                this.moon = this.header.querySelector('.moon-icon')
+                this.sun = this.header.querySelector('.sun-icon')
+                this.bars = this.header.querySelector('.bars-icon')
+                this.main = document.querySelector('#main')
+                this.initHeaderTheme()
+                this.sun.removeEventListener('click', this.eDarkModeEnabled.bind(this))
+                this.sun.addEventListener('click', this.eDarkModeEnabled.bind(this))
+                this.moon.removeEventListener('click', this.eLightModeEnabled.bind(this))
+                this.moon.addEventListener('click', this.eLightModeEnabled.bind(this))
+            }
+            initHeaderTheme() {
+                if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark')
+                    this.logo.classList.add('hidden')
+                    this.logoDark.classList.remove('hidden')
+                    this.moon.classList.add('md:flex')
+                    this.sun.classList.remove('md:flex')
+                } else {
+                    document.documentElement.classList.remove('dark')
+                    this.logo.classList.remove('hidden')
+                    this.logoDark.classList.add('hidden')
+                    this.moon.classList.remove('md:flex')
+                    this.sun.classList.add('md:flex')
+                }
+            }
+            eDarkModeEnabled() {
+                document.documentElement.classList.add('dark')
+                localStorage.setItem('theme', 'dark')
+                this.logo.classList.add('hidden')
+                this.logoDark.classList.remove('hidden')
+                this.moon.classList.add('md:flex')
+                this.sun.classList.remove('md:flex')
+                this.main.classList.remove('scrollbar')
+                this.main.classList.add('scrollbar-dark')
+            }
+            eLightModeEnabled() {
+                document.documentElement.classList.remove('dark')
+                localStorage.setItem('theme', 'light')
+                this.logo.classList.remove('hidden')
+                this.logoDark.classList.add('hidden')
+                this.moon.classList.remove('md:flex')
+                this.sun.classList.add('md:flex')
+                this.main.classList.remove('scrollbar-dark')
+                this.main.classList.add('scrollbar')
+            }
+        }
+        const header = new Header()
+    </script>
+}
+
+templ ClassPageNav() {
+    <script>
+        class PageNav {
+            constructor() {}
+            hook() {
+                this.main = document.querySelector('#main')
+                this.pagenav = document.querySelector('#pagenav')
+                this.pagenavItems = this.pagenav.querySelectorAll('.pagenav-item')
+                this.sections = this.main.querySelectorAll('.section')
+                this.debounceTimer;
+                this.main.addEventListener('scroll', this.eMainScrollEvent.bind(this));
+                this.updateActiveSection();
+                if (this.pagenavItems.length > 0) {
+                    this.pagenavItems[0].classList.add('text-blue');
+                }
+                for (let i = 0; i < this.pagenavItems.length; i++) {
+                    let pagenavItem = this.pagenavItems[i];
+                    pagenavItem.removeEventListener('click', this.eScrollToSection.bind(this));
+                    pagenavItem.addEventListener('click', this.eScrollToSection.bind(this));
+                }
+            }
+            updateActiveSection() {
+                let mainCenter = this.main.scrollTop + this.main.offsetHeight / 2;
+                let closestSection = null;
+                let closestDistance = Infinity;
+                for (let i = 0; i < this.sections.length; i++) {
+                    let section = this.sections[i];
+                    let sectionMiddle = section.offsetTop + section.offsetHeight / 2;
+                    let distance = Math.abs(mainCenter - sectionMiddle);
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        closestSection = section;
+                    }
+                }
+                if (closestSection) {
+                    let activeSectionID = closestSection.id;
+                    this.pagenavItems.forEach(function(pagenavItem) {
+                        let sectionref = pagenavItem.getAttribute('sectionref');
+                        if (sectionref === activeSectionID) {
+                            pagenavItem.classList.add('text-blue');
+                        } else {
+                            pagenavItem.classList.remove('text-blue');
+                        }
+                    });
+                }
+            }
+            eScrollToSection(e) {
+                let link = e.currentTarget;
+                let sectionref = link.getAttribute('sectionref');
+                let section = document.getElementById(sectionref);
+                section.scrollIntoView({ behavior: 'auto' });
+            }
+            eMainScrollEvent() {
+                clearTimeout(this.debounceTimer);
+                this.debounceTimer = setTimeout(this.updateActiveSection.bind(this), 100);
+            }
+        }
+        const pagenav = new PageNav()
+    </script>
+}
+
 

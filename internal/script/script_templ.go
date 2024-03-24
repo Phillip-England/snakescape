@@ -6,6 +6,9 @@ package script
 //lint:file-ignore SA4006 This context is only used if a nested component is present.
 
 import "github.com/a-h/templ"
+import "context"
+import "io"
+import "bytes"
 
 func ScrollTo(id string) templ.ComponentScript {
 	return templ.ComponentScript{
@@ -17,186 +20,271 @@ func ScrollTo(id string) templ.ComponentScript {
 	}
 }
 
-func HighlightPageNavigation() templ.ComponentScript {
-	return templ.ComponentScript{
-		Name: `__templ_HighlightPageNavigation_de1e`,
-		Function: `function __templ_HighlightPageNavigation_de1e(){let main = qs('#main'); // Assuming qs is a shorthand for querySelector
-    let pagenavItems = qsa(".pagenav-item");
-    let sections = qsa('.section');
-    let debounceTimer;
-
-    function updateActiveSection() {
-        // Calculate the center of the main area visible part
-        let mainCenter = main.scrollTop + main.offsetHeight / 2;
-        let closestSection = null;
-        let closestDistance = Infinity;
-
-        for (let i = 0; i < sections.length; i++) {
-            let section = sections[i];
-            // Calculate the middle point of the section
-            let sectionMiddle = section.offsetTop + section.offsetHeight / 2;
-            // Calculate the distance of the section middle to the main center
-            let distance = Math.abs(mainCenter - sectionMiddle);
-
-            // Check if this section is closer to the center of the main area than the previous ones
-            if (distance < closestDistance) {
-                closestDistance = distance;
-                closestSection = section;
-            }
-        }
-
-        if (closestSection) {
-            let activeSectionID = closestSection.id;
-            pagenavItems.forEach(function(pagenavItem) {
-                let sectionref = pagenavItem.getAttribute('sectionref');
-                if (sectionref === activeSectionID) {
-                    pagenavItem.classList.add('text-blue');
-                } else {
-                    pagenavItem.classList.remove('text-blue');
-                }
-            });
-        }
-    }
-
-    // Attach the scroll event listener
-    main.addEventListener('scroll', function() {
-        clearTimeout(debounceTimer); // Clear the previous timeout if the event is fired again within the wait period
-        debounceTimer = setTimeout(updateActiveSection, 100); // Set a new timeout
-    });
-
-    // Set the first .pagenav-item as active on initial load
-    function setInitialActiveNavItem() {
-        if (pagenavItems.length > 0) {
-            pagenavItems[0].classList.add('text-blue');
-        }
-    }
-
-    // Call the function to update active section on initial load, and to set the first navigation item as active
-    updateActiveSection(); // This will handle the logic of setting the closest section as active even on load
-    setInitialActiveNavItem();
-}`,
-		Call:       templ.SafeScript(`__templ_HighlightPageNavigation_de1e`),
-		CallInline: templ.SafeScriptInline(`__templ_HighlightPageNavigation_de1e`),
-	}
+// using htmx along with hx-boost, the javascript found here will run once, and be available in all other page loads
+func HeadJavascript() templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		if !templ_7745c5c3_IsBuffer {
+			templ_7745c5c3_Buffer = templ.GetBuffer()
+			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var1 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var1 == nil {
+			templ_7745c5c3_Var1 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = InitalizeColorTheme().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = QuickSelectors().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = PathParts().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = ClassHeader().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = ClassSiteNav().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = OnLoadEvent().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = ApplyThemeToScrollbar().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = ClassPageNav().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !templ_7745c5c3_IsBuffer {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
+		}
+		return templ_7745c5c3_Err
+	})
 }
 
-func SiteNavDropdownToggle() templ.ComponentScript {
-	return templ.ComponentScript{
-		Name: `__templ_SiteNavDropdownToggle_6451`,
-		Function: `function __templ_SiteNavDropdownToggle_6451(){let dropdowns = qsa('.sitenav-dropdown')
-}`,
-		Call:       templ.SafeScript(`__templ_SiteNavDropdownToggle_6451`),
-		CallInline: templ.SafeScriptInline(`__templ_SiteNavDropdownToggle_6451`),
-	}
+func OnLoadEvent() templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		if !templ_7745c5c3_IsBuffer {
+			templ_7745c5c3_Buffer = templ.GetBuffer()
+			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var2 == nil {
+			templ_7745c5c3_Var2 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 1)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !templ_7745c5c3_IsBuffer {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
+		}
+		return templ_7745c5c3_Err
+	})
 }
 
-func ColorSiteNavItemsNoDropdowns() templ.ComponentScript {
-	return templ.ComponentScript{
-		Name: `__templ_ColorSiteNavItemsNoDropdowns_5ac6`,
-		Function: `function __templ_ColorSiteNavItemsNoDropdowns_5ac6(){let baseSiteNavItems = qsa('.sitenav-item-no-dropdown')
-    let currentPath = window.location.pathname;
-    for (let i = 0; i < baseSiteNavItems.length; i++) {
-        let navitem = baseSiteNavItems[i];
-        let activePath = navitem.getAttribute('active-path');
-        if (activePath == currentPath) {
-            navitem.classList.add('bg-lightgray');
-            navitem.classList.add('dark:bg-darkgray');
-            navitem.classList.add('text-blue');
-            navitem.classList.add('dark:text-blue');
-            navitem.classList.remove('text-darkgray');
-            navitem.classList.remove('dark:text-gray');
-        }
-    }
-}`,
-		Call:       templ.SafeScript(`__templ_ColorSiteNavItemsNoDropdowns_5ac6`),
-		CallInline: templ.SafeScriptInline(`__templ_ColorSiteNavItemsNoDropdowns_5ac6`),
-	}
+func ApplyThemeToScrollbar() templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		if !templ_7745c5c3_IsBuffer {
+			templ_7745c5c3_Buffer = templ.GetBuffer()
+			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var3 == nil {
+			templ_7745c5c3_Var3 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 2)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !templ_7745c5c3_IsBuffer {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
+		}
+		return templ_7745c5c3_Err
+	})
 }
 
-func ColorSiteNavItemsWithDropdowns() templ.ComponentScript {
-	return templ.ComponentScript{
-		Name: `__templ_ColorSiteNavItemsWithDropdowns_b7ff`,
-		Function: `function __templ_ColorSiteNavItemsWithDropdowns_b7ff(){let dropdowns = qsa('.sitenav-dropdown');
-    let path = window.location.pathname;
-    let parts = pathParts()
-    for (let i = 0; i < dropdowns.length; i++) {
-        let dropdown = dropdowns[i];
-        let title = dropdown.querySelector('.dropdown-title')
-        let caret = dropdown.querySelector('.caret')
-        let activePath = dropdown.getAttribute('active-path');
-        let hiddenSection = dropdown.querySelector('.hidden-section');
-        let dropdownToggle = dropdown.querySelector('.dropdown-toggle');
-        let dropdownItems = hiddenSection.querySelectorAll('.sitenav-dropdown-item');
-        if (activePath == parts[0]) {
-            title.classList.add('text-blue');
-            title.classList.add('dark:text-blue');
-            caret.classList.add('rotate-90')
-            hiddenSection.classList.remove('hidden');
-        }
-        dropdownToggle.addEventListener('click', function() {
-            if (hiddenSection.classList.contains('hidden')) {
-                hiddenSection.classList.remove('hidden');
-                caret.classList.add('rotate-90')
-            } else {
-                hiddenSection.classList.add('hidden');
-                caret.classList.remove('rotate-90')
-            }
-        });
-        for (let j = 0; j < dropdownItems.length; j++) {
-            let dropdownItem = dropdownItems[j];
-            let dropdownItemPath = dropdownItem.getAttribute('active-path');
-            if (dropdownItemPath == path) {
-                dropdownItem.classList.add('bg-lightgray');
-                dropdownItem.classList.add('dark:bg-darkgray');
-                dropdownItem.classList.add('text-blue');
-            }
-        }
-    }
-}`,
-		Call:       templ.SafeScript(`__templ_ColorSiteNavItemsWithDropdowns_b7ff`),
-		CallInline: templ.SafeScriptInline(`__templ_ColorSiteNavItemsWithDropdowns_b7ff`),
-	}
+func RunOnLoad() templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		if !templ_7745c5c3_IsBuffer {
+			templ_7745c5c3_Buffer = templ.GetBuffer()
+			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 3)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !templ_7745c5c3_IsBuffer {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
+		}
+		return templ_7745c5c3_Err
+	})
 }
 
-func ToggleDarkMode() templ.ComponentScript {
-	return templ.ComponentScript{
-		Name: `__templ_ToggleDarkMode_f97c`,
-		Function: `function __templ_ToggleDarkMode_f97c(){let header = qs('#header')
-    let moon = header.querySelector('.moon-icon')
-    let sun = header.querySelector('.sun-icon')
-    let logo = header.querySelector('.logo')
-    let main = document.getElementById('main')
-    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        logo.src = '/static/svg/logo-dark.svg'
-        moon.classList.add('md:flex')
-        main.classList.add('scrollbar-dark')        
-    } else {
-        document.documentElement.classList.remove('dark')
-        logo.src = '/static/svg/logo.svg'
-        sun.classList.add('md:flex')
-        main.classList.add('scrollbar')        
-    }
-    sun.addEventListener('click', function() {
-        document.documentElement.classList.add('dark')
-        localStorage.setItem('theme', 'dark')
-        logo.src = '/static/svg/logo-dark.svg'
-        main.classList.add('scrollbar-dark')
-        main.classList.remove('scrollbar')
-        moon.classList.add('md:flex')
-        sun.classList.remove('md:flex')
-    })
-    moon.addEventListener('click', function() {
-        document.documentElement.classList.remove('dark')
-        localStorage.setItem('theme', 'light')
-        main.classList.remove('scrollbar-dark')
-        main.classList.add('scrollbar')
-        logo.src = '/static/svg/logo.svg'
-        moon.classList.remove('md:flex')
-        sun.classList.add('md:flex')
-    })
+func PathParts() templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		if !templ_7745c5c3_IsBuffer {
+			templ_7745c5c3_Buffer = templ.GetBuffer()
+			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var5 == nil {
+			templ_7745c5c3_Var5 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 4)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !templ_7745c5c3_IsBuffer {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
+		}
+		return templ_7745c5c3_Err
+	})
+}
 
-}`,
-		Call:       templ.SafeScript(`__templ_ToggleDarkMode_f97c`),
-		CallInline: templ.SafeScriptInline(`__templ_ToggleDarkMode_f97c`),
-	}
+func QuickSelectors() templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		if !templ_7745c5c3_IsBuffer {
+			templ_7745c5c3_Buffer = templ.GetBuffer()
+			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var6 == nil {
+			templ_7745c5c3_Var6 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 5)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !templ_7745c5c3_IsBuffer {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
+		}
+		return templ_7745c5c3_Err
+	})
+}
+
+func InitalizeColorTheme() templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		if !templ_7745c5c3_IsBuffer {
+			templ_7745c5c3_Buffer = templ.GetBuffer()
+			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var7 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var7 == nil {
+			templ_7745c5c3_Var7 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 6)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !templ_7745c5c3_IsBuffer {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
+		}
+		return templ_7745c5c3_Err
+	})
+}
+
+func ClassSiteNav() templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		if !templ_7745c5c3_IsBuffer {
+			templ_7745c5c3_Buffer = templ.GetBuffer()
+			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var8 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var8 == nil {
+			templ_7745c5c3_Var8 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 7)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !templ_7745c5c3_IsBuffer {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
+		}
+		return templ_7745c5c3_Err
+	})
+}
+
+func ClassHeader() templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		if !templ_7745c5c3_IsBuffer {
+			templ_7745c5c3_Buffer = templ.GetBuffer()
+			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var9 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var9 == nil {
+			templ_7745c5c3_Var9 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 8)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !templ_7745c5c3_IsBuffer {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
+		}
+		return templ_7745c5c3_Err
+	})
+}
+
+func ClassPageNav() templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		if !templ_7745c5c3_IsBuffer {
+			templ_7745c5c3_Buffer = templ.GetBuffer()
+			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var10 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var10 == nil {
+			templ_7745c5c3_Var10 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 9)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !templ_7745c5c3_IsBuffer {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
+		}
+		return templ_7745c5c3_Err
+	})
 }
