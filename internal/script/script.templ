@@ -30,7 +30,6 @@ templ OnLoadEvent() {
 templ ApplyThemeToScrollbar() {
     <script>
         function applyThemeToScrollbar() {
-            console.log('hit')
             if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 qs('#main').classList.add('scrollbar-dark')
             } else {
