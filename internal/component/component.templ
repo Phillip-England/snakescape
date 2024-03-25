@@ -154,9 +154,13 @@ templ PageTurnEmpty() {
 }
 
 templ CodeBlock(language string) {
-    <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded">
+    <pre>
         <code class={language}>
             { children... }
         </code>
     </pre>
+}
+
+templ Indent(text string) {
+    <div class="pl-4">{text}</div>
 }

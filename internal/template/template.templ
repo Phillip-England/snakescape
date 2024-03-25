@@ -13,14 +13,14 @@ templ Base(title string) {
             <meta charset="UTF-8"></meta>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
             <script src="https://unpkg.com/htmx.org@1.9.11"></script>
-            <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
-            <script></script>
+            <script src="/static/js/prism.js"></script>
             <link rel="stylesheet" href="/static/css/output.css"></link>
+            <link rel="stylesheet" href="/static/css/prism.css"></link>
+
             <title>{title}</title>
             @style.BodyGrid()
             @style.MainGrid()
             @style.ScrollbarStyles()
-            @style.DraculaTheme()
             @script.HeadJavascript()
         </head>
         <body class="grid w-full gap-8 bg-white dark:bg-black text-black dark:text-faintgray" hx-boost="true">
@@ -78,7 +78,11 @@ templ Technologies() {
         @component.Main() {
             @component.Article("Technologies") {
                 @component.Section("Python", "1") {
-                    <p>Python is a general purpose programming language</p>
+                    <p>Python is a general purpose programming language and can be used for a variety of applications. We will be focused mainly on using it to write scripts. These scripts will take control over our mouse and keyboard to execute tasks in a given sequence. For example, the following snip can be used to make the mouse move to the center of your screen and click &#40assuming you have the proper packages installed&#41.</p>
+                    <pre class="language-python">
+                        <code class="language-python">import pyautogui</code><br></br>
+                        <code class="language-python">pyautogui.moveTo&#40;1920 / 2, 1080 / 2&#41;</code>
+                    </pre>
                 }
                 @component.PageTurnWrapper() {
                     @component.PageTurnLeft("Introduction", "/")

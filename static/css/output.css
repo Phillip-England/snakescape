@@ -740,6 +740,10 @@ video {
   overflow: hidden;
 }
 
+.whitespace-pre {
+  white-space: pre;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }

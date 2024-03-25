@@ -42,7 +42,9 @@
 \"><p class=\"place-self-start\">Previous</p><h4 class=\"place-self-start text font-bold text-blue\">&lt&lt 
 </h4></a></li>
 <div class=\"w-1/2\"></div>
-<pre class=\"bg-gray-100 dark:bg-gray-800 p-4 rounded\">
+<pre>
 <code class=\"
 \">
 </code></pre>
+<div class=\"pl-4\">
+</div>
