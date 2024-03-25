@@ -23,11 +23,11 @@ func main() {
 			http.NotFound(w, r)
 			return
 		}
-		middleware.Chain(w, r, handler.Home)
+		middleware.Chain(w, r, handler.Introduction)
 	})
 
-	mux.HandleFunc("GET /getting-started/overview", func(w http.ResponseWriter, r *http.Request) {
-		middleware.Chain(w, r, handler.Home)
+	mux.HandleFunc("GET /getting-started/technologies", func(w http.ResponseWriter, r *http.Request) {
+		middleware.Chain(w, r, handler.Technologies)
 	})
 
 

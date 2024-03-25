@@ -19,6 +19,10 @@ func ServeStaticFiles(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, fullPath)
 }
 
-func Home(ctx *middleware.CustomContext, w http.ResponseWriter, r *http.Request) {
-	template.Home().Render(ctx, w)
+func Introduction(ctx *middleware.CustomContext, w http.ResponseWriter, r *http.Request) {
+	template.Introduction().Render(ctx, w)
+}
+
+func Technologies(ctx *middleware.CustomContext, w http.ResponseWriter, r *http.Request) {
+	template.Technologies().Render(ctx, w)
 }
