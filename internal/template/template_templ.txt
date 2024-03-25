@@ -16,7 +16,7 @@
  
  
  
-<p>Python is a general purpose programming language and can be used for a variety of applications. We will be focused mainly on using it to write scripts. These scripts will take control over our mouse and keyboard to execute tasks in a given sequence. For example, the following snip can be used to make the mouse move to the center of your screen and click &#40assuming you have the proper packages installed&#41.</p><pre class=\"language-python\"><code class=\"language-python\">import pyautogui</code><br><code class=\"language-python\">pyautogui.moveTo&#40;1920 / 2, 1080 / 2&#41;</code></pre>
+<p>Python is a general purpose programming language and can be used for a variety of applications. We will be focused mainly on using it to write scripts. These scripts will take control over our mouse and keyboard to execute tasks in a given sequence. For example, the following snip can be used to make the mouse move to the center of your screen and click &#40assuming you have the proper packages installed&#41.</p><pre class=\"language-python overflow-y-hidden\"><code class=\"language-python\">import pyautogui</code><br><code class=\"language-python\">pyautogui.moveTo&#40;1920 / 2, 1080 / 2&#41;</code> <code class=\"language-python\">pyautogui.moveTo&#40;1920 / 2, 1080 / 2&#41;asdasdhasdbasbaksjdbaksljdbakjsdbakjsbdakjsdbaksjdbaksjdbaksjdbaskjb</code></pre>
  
  
  

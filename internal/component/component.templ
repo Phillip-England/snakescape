@@ -25,7 +25,7 @@ templ Header() {
 }
 
 templ Section(title string, id string) {
-    <section id={id} class="section flex flex-col gap-4 text-sm">
+    <section id={id} class="section flex flex-col gap-4 text-sm overflow-y-hidden">
         <h2 class="text-2xl font-bold">{title}</h2>
         { children... }
     </section>

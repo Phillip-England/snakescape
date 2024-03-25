@@ -740,6 +740,10 @@ video {
   overflow: hidden;
 }
 
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+
 .whitespace-pre {
   white-space: pre;
 }
