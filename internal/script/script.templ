@@ -160,6 +160,7 @@ templ ClassHeader() {
                 this.header = document.querySelector('#header')
                 this.logo = this.header.querySelector('.logo')
                 this.logoDark = this.header.querySelector('.logo-dark')
+                this.codeBlocks = document.querySelectorAll('.codeblock')
                 this.moon = this.header.querySelector('.moon-icon')
                 this.sun = this.header.querySelector('.sun-icon')
                 this.bars = this.header.querySelector('.bars-icon')
@@ -193,6 +194,11 @@ templ ClassHeader() {
                     this.moon.classList.add('md:flex')
                     this.sun.classList.remove('md:flex')
                     this.logoPlaceholder.classList.add('hidden')
+                    for (let i = 0; i < this.codeBlocks.length; i++) {
+                        let codeBlock = this.codeBlocks[i]
+                        codeBlock.classList.add('scrollbar-codeblock-dark')
+                        codeBlock.classList.add('codeblock-dark')
+                    }
                 } else {
                     document.documentElement.classList.remove('dark')
                     this.logo.classList.remove('hidden')
@@ -200,6 +206,11 @@ templ ClassHeader() {
                     this.moon.classList.remove('md:flex')
                     this.sun.classList.add('md:flex')
                     this.logoPlaceholder.classList.add('hidden')
+                    for (let i = 0; i < this.codeBlocks.length; i++) {
+                        let codeBlock = this.codeBlocks[i]
+                        codeBlock.classList.add('scrollbar-codeblock-light')
+                        codeBlock.classList.add('codeblock-light')
+                    }
                 }
             }
             eDarkModeEnabled() {
@@ -211,6 +222,13 @@ templ ClassHeader() {
                 this.sun.classList.remove('md:flex')
                 this.main.classList.remove('scrollbar')
                 this.main.classList.add('scrollbar-dark')
+                for (let i = 0; i < this.codeBlocks.length; i++) {
+                    let codeBlock = this.codeBlocks[i]
+                    codeBlock.classList.remove('scrollbar-codeblock-light')
+                    codeBlock.classList.add('scrollbar-codeblock-dark')
+                    codeBlock.classList.remove('codeblock-light')
+                    codeBlock.classList.add('codeblock-dark')
+                }
             }
             eLightModeEnabled() {
                 document.documentElement.classList.remove('dark')
@@ -221,6 +239,13 @@ templ ClassHeader() {
                 this.sun.classList.add('md:flex')
                 this.main.classList.remove('scrollbar-dark')
                 this.main.classList.add('scrollbar')
+                for (let i = 0; i < this.codeBlocks.length; i++) {
+                    let codeBlock = this.codeBlocks[i]
+                    codeBlock.classList.remove('scrollbar-codeblock-dark')
+                    codeBlock.classList.add('scrollbar-codeblock-light')
+                    codeBlock.classList.add('codeblock-light')
+                    codeBlock.classList.remove('codeblock-dark')
+                }
             }
             eToggleMobileNav() {
                 let mobilenav = document.getElementById('mobilenav')
@@ -301,5 +326,3 @@ templ ClassPageNav() {
         const pagenav = new PageNav()
     </script>
 }
-
-

@@ -36,7 +36,7 @@ templ Footer() {
 }
 
 templ MobileNavArea() {
-    <nav id="mobilenav" class="md:hidden hidden fixed left-0 top-0 sm:w-2/5 w-3/5 bg-black z-40 border-r dark:border-darkgray h-screen p-2">
+    <nav id="mobilenav" class="md:hidden hidden fixed left-0 top-0 sm:w-2/5 w-3/5 dark:bg-black bg-white z-40 border-r border-faintgray dark:border-darkgray h-screen p-2">
         <div class="mobile-nav-spacer h-[100px]"></div>
         <ul class="flex flex-col gap-2">
             { children... }
@@ -153,14 +153,3 @@ templ PageTurnEmpty() {
     <div class="w-1/2"></div>
 }
 
-templ CodeBlock(language string) {
-    <pre>
-        <code class={language}>
-            { children... }
-        </code>
-    </pre>
-}
-
-templ Indent(text string) {
-    <div class="pl-4">{text}</div>
-}

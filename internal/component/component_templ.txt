@@ -4,7 +4,7 @@
 </h2>
 </section>
 <footer class=\"footer h-16 border-t border-faintgray dark:border-darkgray p-6 text-xs w-full text-center h-[50px]\" style=\"grid-area: footer;\">Copyright © 2024 Phillip England</footer>
-<nav id=\"mobilenav\" class=\"md:hidden hidden fixed left-0 top-0 sm:w-2/5 w-3/5 bg-black z-40 border-r dark:border-darkgray h-screen p-2\"><div class=\"mobile-nav-spacer h-[100px]\"></div><ul class=\"flex flex-col gap-2\">
+<nav id=\"mobilenav\" class=\"md:hidden hidden fixed left-0 top-0 sm:w-2/5 w-3/5 dark:bg-black bg-white z-40 border-r border-faintgray dark:border-darkgray h-screen p-2\"><div class=\"mobile-nav-spacer h-[100px]\"></div><ul class=\"flex flex-col gap-2\">
 </ul></nav>
 <div id=\"overlay\" class=\"overlay hidden md:hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-30\"></div>
 <nav id=\"sitenav\" class=\"border-r border-faintgray dark:border-darkgray px-2 bg-white dark:bg-black hidden md:flex flex-col gap-4 overflow-hidden hover:overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 max-h-[90vh]\" style=\"grid-area: sitenav;\"><ul class=\"flex flex-col gap-2\">
@@ -42,9 +42,3 @@
 \"><p class=\"place-self-start\">Previous</p><h4 class=\"place-self-start text font-bold text-blue\">&lt&lt 
 </h4></a></li>
 <div class=\"w-1/2\"></div>
-<pre>
-<code class=\"
-\">
-</code></pre>
-<div class=\"pl-4\">
-</div>

@@ -1,0 +1,122 @@
+/* PrismJS 1.29.0
+https://prismjs.com/download.html#themes=prism-tomorrow&languages=bash+python */
+/**
+ * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML
+ * Based on https://github.com/chriskempson/tomorrow-theme
+ * @author Rose Pritchard
+ */
+
+pre[class*="codeblock-dark"] code[class*="language-"],
+pre[class*="codeblock-dark"][class*="language-"] {
+	color: #ccc;
+	background: none;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="codeblock-dark"][class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	background: #2d2d2d; /* Adjusted for dark theme */
+}
+
+/* Inline code */
+pre[class*="codeblock-dark"] > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+	background: #2d2d2d; /* Adjusted for dark theme */
+}
+
+
+pre[class*="codeblock-dark"] .token.comment,
+pre[class*="codeblock-dark"] .token.block-comment,
+pre[class*="codeblock-dark"] .token.prolog,
+pre[class*="codeblock-dark"] .token.doctype,
+pre[class*="codeblock-dark"] .token.cdata {
+	color: #999;
+}
+
+pre[class*="codeblock-dark"] .token.punctuation {
+	color: #ccc;
+}
+
+pre[class*="codeblock-dark"] .token.tag,
+pre[class*="codeblock-dark"] .token.attr-name,
+pre[class*="codeblock-dark"] .token.namespace,
+pre[class*="codeblock-dark"] .token.deleted {
+	color: #e2777a;
+}
+
+pre[class*="codeblock-dark"] .token.function-name {
+	color: #6196cc;
+}
+
+pre[class*="codeblock-dark"] .token.boolean,
+pre[class*="codeblock-dark"] .token.number,
+pre[class*="codeblock-dark"] .token.function {
+	color: #f08d49;
+}
+
+pre[class*="codeblock-dark"] .token.property,
+pre[class*="codeblock-dark"] .token.class-name,
+pre[class*="codeblock-dark"] .token.constant,
+pre[class*="codeblock-dark"] .token.symbol {
+	color: #f8c555;
+}
+
+pre[class*="codeblock-dark"] .token.selector,
+pre[class*="codeblock-dark"] .token.important,
+pre[class*="codeblock-dark"] .token.atrule,
+pre[class*="codeblock-dark"] .token.keyword,
+pre[class*="codeblock-dark"] .token.builtin {
+	color: #cc99cd;
+}
+
+pre[class*="codeblock-dark"] .token.string,
+pre[class*="codeblock-dark"] .token.char,
+pre[class*="codeblock-dark"] .token.attr-value,
+pre[class*="codeblock-dark"] .token.regex,
+pre[class*="codeblock-dark"] .token.variable {
+	color: #7ec699;
+}
+
+pre[class*="codeblock-dark"] .token.operator,
+pre[class*="codeblock-dark"] .token.entity,
+pre[class*="codeblock-dark"] .token.url {
+	color: #67cdcc;
+}
+
+pre[class*="codeblock-dark"] .token.important,
+pre[class*="codeblock-dark"] .token.bold {
+	font-weight: bold;
+}
+pre[class*="codeblock-dark"] .token.italic {
+	font-style: italic;
+}
+
+pre[class*="codeblock-dark"] .token.entity {
+	cursor: help;
+}
+
+pre[class*="codeblock-dark"] .token.inserted {
+	color: green;
+}
+
