@@ -30,6 +30,10 @@ func main() {
 		middleware.Chain(w, r, handler.Technologies)
 	})
 
+	mux.HandleFunc("GET /getting-started/screen-coordinates", func(w http.ResponseWriter, r *http.Request) {
+		middleware.Chain(w, r, handler.ScreenCoordinates)
+	})
+
 
 	fmt.Println(fmt.Sprintf("server is running on port %s", os.Getenv("PORT")))
 	err := http.ListenAndServe(":"+os.Getenv("PORT"), mux)

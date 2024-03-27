@@ -26,3 +26,7 @@ func Introduction(ctx *middleware.CustomContext, w http.ResponseWriter, r *http.
 func Technologies(ctx *middleware.CustomContext, w http.ResponseWriter, r *http.Request) {
 	template.Technologies().Render(ctx, w)
 }
+
+func ScreenCoordinates(ctx *middleware.CustomContext, w http.ResponseWriter, r *http.Request) {
+	template.ScreenCoordinates().Render(ctx, w)
+}

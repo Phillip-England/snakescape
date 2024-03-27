@@ -2,24 +2,37 @@
 </title>
 </head><body class=\"grid w-full gap-8 bg-white dark:bg-black text-black dark:text-faintgray\" hx-boost=\"true\">
 </body></html>
-<p>This guide will walk you through how to get started building you own bots for RuneScape using python.</p><p>All code examples used in this site can be found in <a class=\"text-blue underline\" href=\"
+<p>This guide will walk you through how to get started building you own bots for RuneScape using <a class=\"text-blue underline\" target=\"_blank\" href=\"
+\">Python.</a></p><p>All code examples used in this sites botting explanations can be found in <a class=\"text-blue underline\" href=\"
 \" target=\"_blank\">this repository</a> 
  public use</p>
  
 <p>Old School RuneScape is a popular MMORPG that has been around since 2013. If you ended up here because you play the game and want to build bots, you can skip to the next section.</p><p>If you are here because you want to learn more about GUI automation, you can sign-up for an account <a class=\"text-blue underline\" href=\"
 \" target=\"_blank\">here</a> and follow along.</p>
  
-<p>This guide is not an introuduction to programming, and assumes you have a basic understanding of python and programming principles.</p><p>However, if you are a novice programmer, this guide will definitely help you to learn more about programming skills, specifically problem solving. A lot of the challenges we face in building bots will have novel solutions, and will expose you to new ways of thinking about general programming problems.</p><p>To get the most out of this guide, you will need a solid grasp of the following concepts:</p><ul class=\"grid\"><li>- terminal commands</li><li>- virtual environments</li><li>- pip and package management</li><li>- loops, conditionals, functions, and lists</li></ul><p>If you are new to programming, I would recommend starting with <a class=\"text-blue underline\" href=\"
-\" target=\"_blank\">Codecademy's Python 3 course</a>. It will teach you everything you need to get going and follow along with this guide.</p><p>Now that we have that out of the way, let's get started!</p>
+<p>This guide is not an introuduction to programming, and assumes you have a basic understanding of Python and programming principles.</p><p>However, if you are a novice programmer, this guide will definitely help you to learn more about programming skills, specifically problem solving. A lot of the challenges we face in building bots will have novel solutions, and will expose you to new ways of thinking about general programming problems.</p><p>To get the most out of this guide, you will need a solid grasp on the following concepts:</p><ul class=\"grid\"><li>- terminal commands</li><li>- virtual environments</li><li>- pip and package management</li><li>- loops, conditionals, functions, and lists</li></ul><p>If you are new to programming, I would recommend starting with <a class=\"text-blue underline\" href=\"
+\" target=\"_blank\">Tech With Tim's - Python As Fast As Possible.</a> It will teach you everything you need to get going and follow along with this guide.</p><p>Now that we have that out of the way, let's get started!</p>
  
  
  
  
  
-<p>Python is a general purpose programming language and can be used for a variety of applications. We will be focused mainly on using it to write scripts. These scripts will take control over our mouse and keyboard to execute tasks in a given sequence. For example, the following snip can be used to make your mouse move to the center of your screen and click &#40assuming you have <a class=\"text-blue underline\" target=\"_blank\" href=\"
-\">pyautogui</a> installed&#41.</p>
+<p>Python is a general purpose programming language and can be used for a variety of applications. We will be focused mainly on using it to write scripts. These scripts will take control over our mouse and keyboard to execute tasks in a given sequence.</p><p>Python is beginner friendly and easy to pick up. With even a basic understand of some of the core concepts, you can follow along and start creating bots in no time.</p>
  
-<p>PyAutoGUI is a python library that allows you to control your mouse and keyboard. It is a great tool for automating tasks that require GUI interaction. You can install it using pip:</p><pre class=\"language-bash codeblock\"><code>pip install pyautogui</code></pre><p>After installation, you can use the following snip to move the mouse to the enter of your screen.</p><pre class=\"language-python codeblock\"><code>import pyautogui</code><br><code>screenWidth, screenHeight = pyautogui.size()</code><br><code>centerX = screenWidth / 2</code><br><code>centerY = screenHeight / 2</code><br><code>pyautogui.moveTo(centerX, centerY)</code><br></pre>
+<p>Windows Subsystem for Linux (WSL) is a software that enables you to use a Linux Terminal on a Windows machine.</p><p>All of the terminal commands used in this guide will assume you are using a Linux, MacOS, or WSL shell. It is possible to following along using the Command Line or Powershell, but I will not be covering those types of examples. 
+ more information on how to get started with WLS, you can check out <a class=\"underline text-blue\" href=\"
+\" target=\"_blank\">this video.</a></p>
+ 
+<p><a class=\"text-blue underline\" target=\"_blank\" href=\"
+\">PyAutoGUI</a> is a python library that allows you to control your mouse and keyboard. It is a great tool for automating tasks that require GUI interaction. You can install it using pip:</p><pre class=\"language-bash codeblock\"><code>pip install pyautogui</code></pre><p>After installation, you can use the following snip to move the mouse to the enter of your screen.</p><pre class=\"language-python codeblock\"><code>import pyautogui</code><br><code>screenWidth, screenHeight = pyautogui.size()</code><br><code>centerX = screenWidth / 2</code><br><code>centerY = screenHeight / 2</code><br><code>pyautogui.moveTo(centerX, centerY)</code><br></pre>
+ 
+ 
+ 
+ 
+ 
+<p>It is important to understand that your entire computer screen can be visualized as a x and y coordinate grid. The top left of your screen is located at (0, 0) while the bottom-right of your screens is located at (your screen width, your screen height)</p>
+<p>If you have a monitor with a resolution of 1280 by 1024, then (1280, 1024) would be the pixel in the bottom-right of the screen.</p>
+ <p>Using PyAutoGUI, we can access specific pixels on the screen. We can also use the random module in Python to select a random pixel within a given range. And with that, we come to the first function we will be using a ton to write RuneScape bots. This function will move the mouse to a random pixel with a certain range and then click.</p><pre class=\"language-python codeblock\"><code>import pyautogui</code><br><code>import random</code><br><code>def random_click_within_bounds(x1, y1, x2, y2):</code><br><code class=\"indent-1\">randomX = random.randint(x1, x2)</code><br><code class=\"indent-1\">randomY = random.randint(y1, y2)</code><br></pre>
  
  
  

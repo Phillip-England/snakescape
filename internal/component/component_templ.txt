@@ -3,7 +3,7 @@
 \" class=\"section flex flex-col gap-4 text-sm overflow-y-hidden\"><h2 class=\"text-2xl font-bold\">
 </h2>
 </section>
-<footer class=\"footer h-16 border-t border-faintgray dark:border-darkgray p-6 text-xs w-full text-center h-[50px]\" style=\"grid-area: footer;\">Copyright © 2024 Phillip England</footer>
+<footer class=\"footer flex justify-center h-16 border-t border-faintgray dark:border-darkgray p-6 text-xs w-full text-center\" style=\"grid-area: footer;\"><p>Copyright © 2024 Phillip England</p></footer>
 <nav id=\"mobilenav\" class=\"md:hidden hidden fixed left-0 top-0 sm:w-2/5 w-3/5 dark:bg-black bg-white z-40 border-r border-faintgray dark:border-darkgray h-screen p-2\"><div class=\"mobile-nav-spacer h-[100px]\"></div><ul class=\"flex flex-col gap-2\">
 </ul></nav>
 <div id=\"overlay\" class=\"overlay hidden md:hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-30\"></div>
@@ -17,6 +17,8 @@
 \"><div class=\"dropdown-toggle flex flex-row justify-between p-2 rounded items-center hover:bg-lightgray dark:hover:bg-darkgray\"><summary class=\"dropdown-title text-sm font-bold\">
 </summary> <svg class=\"caret w-4 h-4\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" fill=\"none\" viewBox=\"0 0 24 24\"><path stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m9 5 7 7-7 7\"></path></svg></div><ul class=\"hidden-section flex flex-col gap-1 hidden pl-4 text-sm font-bold\">
 </ul></li>
+ 
+ 
  
  
 <li class=\"sitenav-dropdown-item mobilenav-item rounded hover:bg-lightgray dark:hover:bg-darkgray flex\" active-path=\"
@@ -42,3 +44,10 @@
 \"><p class=\"place-self-start\">Previous</p><h4 class=\"place-self-start text font-bold text-blue\">&lt&lt 
 </h4></a></li>
 <div class=\"w-1/2\"></div>
+<div class=\"grid grid-cols-[auto_1fr] gap-4 bg-faintgray dark:bg-darkgray rounded p-4 text-xs items-center justify-between border border-lightgray dark:border-darkborder\"><div><svg class=\"w-5 h-5 text-blue\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" fill=\"none\" viewBox=\"0 0 24 24\"><path stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 a9 9 0 0 1 18 0Z\"></path></svg></div><div><!-- Place right side content here -->
+</div></div>
+<img src=\"
+\" alt=\"
+\" height=\"
+\" width=\"
+\">

@@ -32,7 +32,7 @@ templ Section(title string, id string) {
 }
 
 templ Footer() {
-    <footer class="footer h-16 border-t border-faintgray dark:border-darkgray p-6 text-xs w-full text-center h-[50px]" style="grid-area: footer;">Copyright © 2024 Phillip England</footer>
+    <footer class="footer flex justify-center h-16 border-t border-faintgray dark:border-darkgray p-6 text-xs w-full text-center" style="grid-area: footer;"><p>Copyright © 2024 Phillip England</p></footer>
 }
 
 templ MobileNavArea() {
@@ -82,12 +82,14 @@ templ NavigationMenu() {
         @SiteNavNoDropdown("Introduction", "/")
         @SiteNavDropdown("Getting Started", "/getting-started") {
             @SiteNavDropdownItem("Technologies", "/getting-started/technologies")
+            @SiteNavDropdownItem("Screen Coordinates", "/getting-started/screen-coordinates")
         }
     }
     @MobileNavArea() {
         @SiteNavNoDropdown("Introduction", "/")
         @SiteNavDropdown("Getting Started", "/getting-started") {
             @SiteNavDropdownItem("Technologies", "/getting-started/technologies")
+            @SiteNavDropdownItem("Screen Coordinates", "/getting-started/screen-coordinates")
         }
     }
 }
@@ -152,4 +154,23 @@ templ PageTurnLeft(text string, href string) {
 templ PageTurnEmpty() {
     <div class="w-1/2"></div>
 }
+
+templ ImportantInfo() {
+    <div class="grid grid-cols-[auto_1fr] gap-4 bg-faintgray dark:bg-darkgray rounded p-4 text-xs items-center justify-between border border-lightgray dark:border-darkborder">
+        <div>
+            <svg class="w-5 h-5 text-blue" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 a9 9 0 0 1 18 0Z"/>
+            </svg>
+        </div>
+        <div>
+            <!-- Place right side content here -->
+            { children... }
+        </div>
+    </div>
+}
+
+templ Image(src string, alt string, height string, width string) {
+    <img src={src} alt={alt} height={height} width={width} />
+}
+
 
