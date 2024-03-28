@@ -838,10 +838,6 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.pl-2 {
-  padding-left: 0.5rem;
-}
-
 .pl-4 {
   padding-left: 1rem;
 }
@@ -891,6 +887,11 @@ video {
 .text-darkgray {
   --tw-text-opacity: 1;
   color: rgb(34 34 34 / var(--tw-text-opacity));
+}
+
+.text-orange {
+  --tw-text-opacity: 1;
+  color: rgb(240 141 73 / var(--tw-text-opacity));
 }
 
 .underline {

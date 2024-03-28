@@ -6,9 +6,17 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=bash+python */
  * @author Rose Pritchard
  */
 
+pre[class*="codeblock-dark"] {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #2e2e2e; /* Adjusted for dark theme */
+}
+
+
 pre[class*="codeblock-dark"] code[class*="language-"],
 pre[class*="codeblock-dark"][class*="language-"] {
 	color: #ccc;
+    border-radius: 0.3em;
 	background: none;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 	font-size: 1em;
@@ -34,7 +42,7 @@ pre[class*="codeblock-dark"][class*="language-"] {
 	padding: 1em;
 	margin: .5em 0;
 	overflow: auto;
-	background: #2d2d2d; /* Adjusted for dark theme */
+	background: #222222; /* Adjusted for dark theme */
 }
 
 /* Inline code */
@@ -42,7 +50,7 @@ pre[class*="codeblock-dark"] > code[class*="language-"] {
 	padding: .1em;
 	border-radius: .3em;
 	white-space: normal;
-	background: #2d2d2d; /* Adjusted for dark theme */
+	background: #222222; /* Adjusted for dark theme */
 }
 
 
