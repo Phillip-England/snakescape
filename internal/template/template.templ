@@ -193,7 +193,7 @@ templ DeveloperEnvironment() {
                     </pre>
                 }
                 @component.Section("Virtual Environments", "2") {
-                    <p>Virtual environments are a way to keep your projects dependencies separate from other projects. This is important because different projects may require different versions of the same package. By using virtual environments, you can ensure that your projects dependencies are isolated from one another. If you have any issues with this section, <a target="_blank" href={templ.URL("https://www.youtube.com/watch?v=Y21OR1OPC9A")} class="text-blue underline">Tech With Tim's - Python Virtual Environments Tutorial</a> can help.</p>
+                    <p>Virtual environments are a way to keep your projects dependencies separate from other projects. This is important because different projects may require different versions of the same package. By using virtual environments, you can ensure that your projects dependencies are isolated from one another. If you have any issues with this section, <a target="_blank" href={templ.URL("https://www.youtube.com/watch?v=Y21OR1OPC9A")} class="text-blue underline">Tech With Tim - Python Virtual Environments Tutorial</a> can help.</p>
                     <p>Run the following command from within your project directory to create a virtual environment:</p>
                     <pre class="language-bash codeblock">
                         <code>python -m venv venv</code>
@@ -202,7 +202,7 @@ templ DeveloperEnvironment() {
                     <pre class="language-bash codeblock">
                         <code>source venv/bin/activate</code>
                     </pre>
-                    <p>After activating the virtual environment, you can install the required packages for your project. In this case, we will be using PyAutoGUI. To install PyAutoGUI, run the following command:</p>
+                    <p>After activating the virtual environment, you can install the required packages {"for"} your project. In this case, we will be using PyAutoGUI. To install PyAutoGUI, run the following command:</p>
                     <pre class="language-bash codeblock">
                         <code>pip install pyautogui</code>
                     </pre>
@@ -218,9 +218,8 @@ templ DeveloperEnvironment() {
                 }
             }
             @component.PageNav() {
-                @component.PageNavItem("Python", "1")
-                @component.PageNavItem("WSL", "2")
-                @component.PageNavItem("PyAutoGUI", "3")
+                @component.PageNavItem("Project Structure", "1")
+                @component.PageNavItem("Virtual Environments", "2")
             }
         }
     }
