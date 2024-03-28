@@ -27,6 +27,10 @@ func Technologies(ctx *middleware.CustomContext, w http.ResponseWriter, r *http.
 	template.Technologies().Render(ctx, w)
 }
 
-func ScreenCoordinates(ctx *middleware.CustomContext, w http.ResponseWriter, r *http.Request) {
-	template.ScreenCoordinates().Render(ctx, w)
+func GameConfiguration(ctx *middleware.CustomContext, w http.ResponseWriter, r *http.Request) {
+	template.GameConfiguration().Render(ctx, w)
+}
+
+func DeveloperEnvironment(ctx *middleware.CustomContext, w http.ResponseWriter, r *http.Request) {
+	template.DeveloperEnvironment().Render(ctx, w)
 }

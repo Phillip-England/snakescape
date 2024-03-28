@@ -10,8 +10,13 @@
 <p>Old School RuneScape is a popular MMORPG that has been around since 2013. If you ended up here because you play the game and want to build bots, you can skip to the next section.</p><p>If you are here because you want to learn more about GUI automation, you can sign-up for an account <a class=\"text-blue underline\" href=\"
 \" target=\"_blank\">here</a> and follow along.</p>
  
+<p>It is important to note that botting in RuneScape is against the rules and can result in a ban. While I am confident the methods used in this guide are less likely to get banned than using a client, the risk is still present.</p>
+<p>Use this guide at your own risk. I am not responsible for any accounts that get banned as a result of following this guide.</p>
+ <p>With that being said, we will go over tips to avoid being banned such as limiting daily play time, randomizing scripts, and avoiding in-game players.</p>
+ 
 <p>This guide is not an introuduction to programming, and assumes you have a basic understanding of Python and programming principles.</p><p>However, if you are a novice programmer, this guide will definitely help you to learn more about programming skills, specifically problem solving. A lot of the challenges we face in building bots will have novel solutions, and will expose you to new ways of thinking about general programming problems.</p><p>To get the most out of this guide, you will need a solid grasp on the following concepts:</p><ul class=\"grid\"><li>- terminal commands</li><li>- virtual environments</li><li>- pip and package management</li><li>- loops, conditionals, functions, and lists</li></ul><p>If you are new to programming, I would recommend starting with <a class=\"text-blue underline\" href=\"
 \" target=\"_blank\">Tech With Tim's - Python As Fast As Possible.</a> It will teach you everything you need to get going and follow along with this guide.</p><p>Now that we have that out of the way, let's get started!</p>
+ 
  
  
  
@@ -30,9 +35,26 @@
  
  
  
-<p>It is important to understand that your entire computer screen can be visualized as a x and y coordinate grid. The top left of your screen is located at (0, 0) while the bottom-right of your screens is located at (your screen width, your screen height)</p>
-<p>If you have a monitor with a resolution of 1280 by 1024, then (1280, 1024) would be the pixel in the bottom-right of the screen.</p>
- <p>Using PyAutoGUI, we can access specific pixels on the screen. We can also use the random module in Python to select a random pixel within a given range. And with that, we come to the first function we will be using a ton to write RuneScape bots. This function will move the mouse to a random pixel with a certain range and then click.</p><pre class=\"language-python codeblock\"><code>import pyautogui</code><br><code>import random</code><br><code>def random_click_within_bounds(x1, y1, x2, y2):</code><br><code class=\"indent-1\">randomX = random.randint(x1, x2)</code><br><code class=\"indent-1\">randomY = random.randint(y1, y2)</code><br></pre>
+<p>It is important to understand your entire computer screen can be visualized as a x and y coordinate grid. The top left of your screen is located at (0, 0) while the bottom-right of your screen is located at (your screen width-1, your screen height-1). <a target=\"_blank\" href=\"
+\" class=\"underline text-blue\">PyAutoGUI's documentation</a> goes into this visually if that helps.</p>
+<p>If you have a monitor with a resolution of 1280 by 1024, then (1279, 1023) would be the pixel in the bottom-right of the screen.</p>
+ <p>Using PyAutoGUI, we can access specific pixels on the screen. We can also use the random module in Python to select a random pixel within a given range. And with that, we come to the first function we will be using a ton to write RuneScape bots.</p>
+                
+<p>When writing or running your bots, it is important to maximize your game window. This will ensure that the coordinates you are using in your scripts are consistent. If you are running your bots on a window that is not maximized, the coordinates will be off and your bot will not work as expected.</p>
+<p>Failing to maximize your game window will result in unexpected behavior from your bots and could lead to suspision from in-game players, resulting in a ban.</p>
+ 
+<p>When writing scripts, we will often use screenshots or pixel colors to determine where to click on screen. For this reason, it is important to keep your in-game settings consistent. I suggest turning the brightness up all the way and using the fixed layout to ensure things are consistent across all your scripts.</p>
+ 
+ 
+ 
+ 
+ 
+<p>In my bots, I use the following project structure:</p><pre class=\"language-bash codeblock\"><code>your-bots-name/</code><br><code>├── img/</code><br><code>└── main.py</code><br></pre><p>To manually create this structure yourself, open your terminal and navigate to the directory you plan to keep all your bots. After deciding where you are going to keep your bots, running the following commands to set things up:</p><pre class=\"language-bash codeblock\"><code>mkdir your-bots-name</code><br><code>cd your-bots-name</code><br><code>mkdir img</code><br><code>touch main.py</code><br></pre>
+ 
+<p>Virtual environments are a way to keep your projects dependencies separate from other projects. This is important because different projects may require different versions of the same package. By using virtual environments, you can ensure that your projects dependencies are isolated from one another. If you have any issues with this section, <a target=\"_blank\" href=\"
+\" class=\"text-blue underline\">Tech With Tim's - Python Virtual Environments Tutorial</a> can help.</p><p>Run the following command from within your project directory to create a virtual environment:</p><pre class=\"language-bash codeblock\"><code>python -m venv venv</code></pre><p>After creating the virtual environment, you can activate it by running the following command:</p><pre class=\"language-bash codeblock\"><code>source venv/bin/activate</code></pre><p>After activating the virtual environment, you can install the required packages for your project. In this case, we will be using PyAutoGUI. To install PyAutoGUI, run the following command:</p><pre class=\"language-bash codeblock\"><code>pip install pyautogui</code></pre><p>After installing PyAutoGUI, you can run the following command to freeze your dependencies:</p><pre class=\"language-bash codeblock\"><code>pip freeze > requirements.txt</code></pre><p>Now that you have your virtual environment set up, you can start writing your bots!</p>
+ 
+ 
  
  
  
